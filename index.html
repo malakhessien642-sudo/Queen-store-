@@ -1,322 +1,249 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Queen Store | متجر الملكة</title>
-<link rel="stylesheet" href="style.css">
 
-   
+    <title>Queen Store | متجر الملكة</title>
+
+    <meta name="description"
+          content="Queen Store - اكتشفي أجمل الملابس والشنط والإكسسوارات ومنتجات التجميل.">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+    <!-- Header -->
     <header>
-        <h1>👑 Queen Store</h1>
-        <p>كل اللي بتحبيه في مكان واحد</p>
+        <div class="container">
+            <h1>👑 Queen Store</h1>
+            <p>كل اللي بتحبيه في مكان واحد</p>
+        </div>
     </header>
 
-    <nav>
-        <a href="#home">الرئيسية</a>
-        <a href="#products">المنتجات</a>
-        <a href="#cart">السلة 🛒</a>
+    <!-- Navigation -->
+    <nav aria-label="القائمة الرئيسية">
+        <div class="container nav-links">
+            <a href="#home">الرئيسية</a>
+            <a href="#categories">الأقسام</a>
+            <a href="#products">المنتجات</a>
+            <a href="#about">عن المتجر</a>
+            <a href="#contact">تواصلي معنا</a>
+        </div>
     </nav>
 
-    <section class="hero" id="home">
-        <h2>أهلًا بيكي في متجر الملكة 💗</h2>
-        <p>اكتشفي أجمل الملابس والإكسسوارات والشنط.</p>
-        <button onclick="goToProducts()">تسوقي الآن</button>
-    </section>
+    <main>
 
-    <main class="container" id="products">
-        <h2 class="section-title">✨ منتجاتنا ✨</h2>
+        <!-- Welcome Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <p class="eyebrow">WELCOME TO QUEEN STORE</p>
 
-        <input
-            type="search"
-            id="search"
-            class="search-box"
-            placeholder="ابحثي عن منتج..."
-            oninput="renderProducts()"
-        >
+                <h2>أهلًا بيكي في عالم الملكة 💗</h2>
 
-        <div class="categories">
-            <button class="active" onclick="setCategory('الكل', this)">الكل</button>
-            <button onclick="setCategory('شنط', this)">شنط</button>
-            <button onclick="setCategory('إكسسوارات', this)">إكسسوارات</button>
-            <button onclick="setCategory('ملابس', this)">ملابس</button>
-            <button onclick="setCategory('ميكب', this)">ميكب</button>
-        </div>
+                <p>
+                    اكتشفي منتجات مميزة تجمع بين الأناقة
+                    والجودة والأسعار المناسبة.
+                </p>
 
-        <div class="products" id="products-list"></div>
+                <a class="button" href="#products">
+                    اكتشفي منتجاتنا
+                </a>
+            </div>
+        </section>
 
-        <section class="cart" id="cart">
-            <h2>🛒 سلة المشتريات</h2>
-            <p id="cart-count">عدد القطع: 0</p>
-
-            <div id="cart-items">
-                <p class="empty">لسه مفيش منتجات في السلة 💗</p>
+        <!-- Categories -->
+        <section class="section container" id="categories">
+            <div class="section-heading">
+                <p class="eyebrow">OUR CATEGORIES</p>
+                <h2>تسوقي حسب القسم</h2>
+                <p>اختاري القسم اللي بتحبيه واكتشفي منتجاته.</p>
             </div>
 
-            <p class="total" id="cart-total">الإجمالي: 0 جنيه</p>
+            <div class="category-grid">
 
-            <button class="checkout" onclick="checkout()">
-                إتمام الطلب
-            </button>
+                <a class="category-card" href="#products">
+                    <span class="category-icon">👜</span>
+                    <h3>الشنط</h3>
+                    <p>شنط لكل المناسبات</p>
+                </a>
+
+                <a class="category-card" href="#products">
+                    <span class="category-icon">👗</span>
+                    <h3>الملابس</h3>
+                    <p>اختيارات تناسب ذوقك</p>
+                </a>
+
+                <a class="category-card" href="#products">
+                    <span class="category-icon">💍</span>
+                    <h3>الإكسسوارات</h3>
+                    <p>تفاصيل تكمل أناقتك</p>
+                </a>
+
+                <a class="category-card" href="#products">
+                    <span class="category-icon">💄</span>
+                    <h3>الميكب</h3>
+                    <p>منتجات التجميل</p>
+                </a>
+
+                <a class="category-card" href="#products">
+                    <span class="category-icon">🎧</span>
+                    <h3>الإلكترونيات</h3>
+                    <p>أجهزة وإكسسوارات تقنية</p>
+                </a>
+
+                <a class="category-card" href="#products">
+                    <span class="category-icon">🎁</span>
+                    <h3>الهدايا</h3>
+                    <p>اختيارات لكل مناسبة</p>
+                </a>
+
+            </div>
         </section>
+
+        <!-- Products -->
+        <section class="section products-section" id="products">
+            <div class="container">
+
+                <div class="section-heading">
+                    <p class="eyebrow">OUR PRODUCTS</p>
+                    <h2>منتجات Queen Store</h2>
+                    <p>اختاري من مجموعتنا المتنوعة.</p>
+                </div>
+
+                <div class="product-grid">
+
+                    <article class="product-card">
+                        <div class="product-image">👜</div>
+                        <div class="product-info">
+                            <span class="product-category">شنط</span>
+                            <h3>شنطة أنيقة</h3>
+                            <p>تصميم عملي يناسب يومك.</p>
+                            <p class="price">350 جنيه</p>
+                            <button type="button">أضيفي للسلة</button>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-image">👗</div>
+                        <div class="product-info">
+                            <span class="product-category">ملابس</span>
+                            <h3>فستان أنيق</h3>
+                            <p>اختيار مميز لمناسباتك.</p>
+                            <p class="price">600 جنيه</p>
+                            <button type="button">أضيفي للسلة</button>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-image">💍</div>
+                        <div class="product-info">
+                            <span class="product-category">إكسسوارات</span>
+                            <h3>إكسسوارات مميزة</h3>
+                            <p>لمسة بسيطة تكمل إطلالتك.</p>
+                            <p class="price">150 جنيه</p>
+                            <button type="button">أضيفي للسلة</button>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-image">💄</div>
+                        <div class="product-info">
+                            <span class="product-category">ميكب</span>
+                            <h3>أحمر شفاه</h3>
+                            <p>اختاري اللون المناسب ليكي.</p>
+                            <p class="price">120 جنيه</p>
+                            <button type="button">أضيفي للسلة</button>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-image">🎧</div>
+                        <div class="product-info">
+                            <span class="product-category">إلكترونيات</span>
+                            <h3>سماعة لاسلكية</h3>
+                            <p>إكسسوار عملي للاستخدام اليومي.</p>
+                            <p class="price">500 جنيه</p>
+                            <button type="button">أضيفي للسلة</button>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-image">🎁</div>
+                        <div class="product-info">
+                            <span class="product-category">هدايا</span>
+                            <h3>بوكس هدايا</h3>
+                            <p>هدية لطيفة لشخص مميز.</p>
+                            <p class="price">400 جنيه</p>
+                            <button type="button">أضيفي للسلة</button>
+                        </div>
+                    </article>
+
+                </div>
+
+                <p class="demo-note">
+                    ملاحظة: المنتجات والأسعار المعروضة تجريبية،
+                    وسيتم ربطها لاحقًا بقاعدة البيانات.
+                </p>
+
+            </div>
+        </section>
+
+        <!-- About -->
+        <section class="section container" id="about">
+            <div class="about-card">
+                <p class="eyebrow">ABOUT US</p>
+                <h2>ليه تختاري Queen Store؟</h2>
+
+                <div class="features-grid">
+                    <div class="feature">
+                        <span>✨</span>
+                        <h3>اختيارات متنوعة</h3>
+                        <p>أقسام مختلفة في مكان واحد.</p>
+                    </div>
+
+                    <div class="feature">
+                        <span>💗</span>
+                        <h3>تجربة سهلة</h3>
+                        <p>تصفحي المنتجات بكل راحة.</p>
+                    </div>
+
+                    <div class="feature">
+                        <span>👑</span>
+                        <h3>ذوق الملكة</h3>
+                        <p>نهتم بالتفاصيل التي تحبيها.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="section container" id="contact">
+            <div class="section-heading">
+                <p class="eyebrow">CONTACT US</p>
+                <h2>تواصلي معنا</h2>
+                <p>قريبًا هتقدري تتواصلي معانا مباشرة من هنا.</p>
+            </div>
+
+            <div class="contact-card">
+                <p>📩 للاستفسارات عن المنتجات والطلبات</p>
+                <p>سيتم إضافة وسائل التواصل عند تجهيز المتجر.</p>
+            </div>
+        </section>
+
     </main>
 
-    <section class="about" id="about">
-        <h2>💗 ليه Queen Store؟</h2>
-        <p>اختيارات مميزة، وأسعار مناسبة، وتجربة تسوق سهلة.</p>
-    </section>
-
+    <!-- Footer -->
     <footer>
-        <p>© 2026 Queen Store - جميع الحقوق محفوظة</p>
-        <p>صُنع بكل حب 💗</p>
+        <div class="container">
+            <h2>👑 Queen Store</h2>
+            <p>كل اللي بتحبيه في مكان واحد 💗</p>
+            <p>© 2026 Queen Store - جميع الحقوق محفوظة</p>
+        </div>
     </footer>
-
-    <script>
-        const products = [
-            {
-                id: 1,
-                name: "شنطة أنيقة",
-                price: 350,
-                category: "شنط",
-                emoji: "👜"
-            },
-            {
-                id: 2,
-                name: "إكسسوارات ذهبية",
-                price: 150,
-                category: "إكسسوارات",
-                emoji: "📿"
-            },
-            {
-                id: 3,
-                name: "فستان أنيق",
-                price: 600,
-                category: "ملابس",
-                emoji: "👗"
-            },
-            {
-                id: 4,
-                name: "أحمر شفاه",
-                price: 120,
-                category: "ميكب",
-                emoji: "💄"
-            },
-            {
-                id: 5,
-                name: "نظارة شمس",
-                price: 200,
-                category: "إكسسوارات",
-                emoji: "🕶️"
-            },
-            {
-                id: 6,
-                name: "حقيبة صغيرة",
-                price: 280,
-                category: "شنط",
-                emoji: "👛"
-            },
-            {
-                id: 7,
-                name: "بلوزة أنيقة",
-                price: 300,
-                category: "ملابس",
-                emoji: "👚"
-            },
-            {
-                id: 8,
-                name: "مجموعة مكياج",
-                price: 450,
-                category: "ميكب",
-                emoji: "💅"
-            }
-        ];
-
-        let cart = [];
-        let selectedCategory = "الكل";
-
-        function renderProducts() {
-            const list = document.getElementById("products-list");
-            const search = document
-                .getElementById("search")
-                .value.trim().toLowerCase();
-
-            const filtered = products.filter(function(product) {
-                const matchesSearch =
-                    product.name.toLowerCase().includes(search);
-
-                const matchesCategory =
-                    selectedCategory === "الكل" ||
-                    product.category === selectedCategory;
-
-                return matchesSearch && matchesCategory;
-            });
-
-            if (filtered.length === 0) {
-                list.innerHTML =
-                    '<p class="empty">مفيش منتجات مطابقة للبحث.</p>';
-                return;
-            }
-
-            list.innerHTML = filtered.map(function(product) {
-                return `
-                    <article class="product">
-                        <div class="product-image">
-                            ${product.emoji}
-                        </div>
-
-                        <h3>${product.name}</h3>
-
-                        <p>${product.price} جنيه</p>
-
-                        <button onclick="addToCart(${product.id})">
-                            أضيفي للسلة +
-                        </button>
-                    </article>
-                `;
-            }).join("");
-        }
-
-        function setCategory(category, button) {
-            selectedCategory = category;
-
-            document.querySelectorAll(".categories button")
-                .forEach(function(item) {
-                    item.classList.remove("active");
-                });
-
-            button.classList.add("active");
-            renderProducts();
-        }
-
-        function addToCart(id) {
-            const product = products.find(function(item) {
-                return item.id === id;
-            });
-
-            const existing = cart.find(function(item) {
-                return item.id === id;
-            });
-
-            if (existing) {
-                existing.quantity++;
-            } else {
-                cart.push({
-                    id: product.id,
-                    name: product.name,
-                    price: product.price,
-                    quantity: 1
-                });
-            }
-
-            renderCart();
-            alert("اتضاف " + product.name + " للسلة 💗");
-        }
-
-        function changeQuantity(id, amount) {
-            const item = cart.find(function(product) {
-                return product.id === id;
-            });
-
-            if (!item) return;
-
-            item.quantity += amount;
-
-            if (item.quantity <= 0) {
-                cart = cart.filter(function(product) {
-                    return product.id !== id;
-                });
-            }
-
-            renderCart();
-        }
-
-        function removeFromCart(id) {
-            cart = cart.filter(function(item) {
-                return item.id !== id;
-            });
-
-            renderCart();
-        }
-
-        function renderCart() {
-            const itemsContainer =
-                document.getElementById("cart-items");
-
-            const count = cart.reduce(function(total, item) {
-                return total + item.quantity;
-            }, 0);
-
-            const total = cart.reduce(function(sum, item) {
-                return sum + item.price * item.quantity;
-            }, 0);
-
-            document.getElementById("cart-count").textContent =
-                "عدد القطع: " + count;
-
-            document.getElementById("cart-total").textContent =
-                "الإجمالي: " + total + " جنيه";
-
-            if (cart.length === 0) {
-                itemsContainer.innerHTML =
-                    '<p class="empty">لسه مفيش منتجات في السلة 💗</p>';
-                return;
-            }
-
-            itemsContainer.innerHTML = cart.map(function(item) {
-                return `
-                    <div class="cart-item">
-                        <div>
-                            <strong>${item.name}</strong>
-                            <br>
-                            ${item.price} جنيه × ${item.quantity}
-                        </div>
-
-                        <div>
-                            <button
-                                onclick="changeQuantity(${item.id}, 1)">
-                                +
-                            </button>
-
-                            <button
-                                onclick="changeQuantity(${item.id}, -1)">
-                                -
-                            </button>
-
-                            <button
-                                onclick="removeFromCart(${item.id})">
-                                حذف
-                            </button>
-                        </div>
-                    </div>
-                `;
-            }).join("");
-        }
-
-        function goToProducts() {
-            document.getElementById("products")
-                .scrollIntoView({ behavior: "smooth" });
-        }
-
-        function checkout() {
-            if (cart.length === 0) {
-                alert("أضيفي منتجات للسلة الأول 💗");
-                return;
-            }
-
-            alert(
-                "إجمالي طلبك " +
-                document.getElementById("cart-total").textContent +
-                "\nدي نسخة تجريبية من المتجر، ولسه محتاجين نربط الطلبات بالـ Backend."
-            );
-        }
-
-        renderProducts();
-        renderCart();
-    </script>
 
 </body>
 </html>
