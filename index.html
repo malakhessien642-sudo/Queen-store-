@@ -4,325 +4,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Queen Store | كوين ستور</title>
+    <title>Queen Store</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header -->
-    <header class="header">
-        <a href="#home" class="logo">♛ Queen Store</a>
-
-        <nav class="navbar">
-            <a href="#home">الرئيسية</a>
-            <a href="#categories">الأقسام</a>
-            <a href="#products">المنتجات</a>
-            <a href="#about">من نحن</a>
-            <a href="#contact">تواصلي معنا</a>
-        </nav>
-
-        <a href="#cart" class="cart-link">
-            🛍️ السلة <span id="cart-count">0</span>
-        </a>
+    <!-- البانر الرئيسي -->
+    <header class="banner">
+        <div class="banner-content">
+            <h1>Queen Store</h1>
+            <p>Your Beauty, Your Style</p>
+        </div>
     </header>
 
-    <!-- Hero Banner -->
-    <section class="hero" id="home">
-        <div class="hero-overlay"></div>
+    <!-- الأقسام -->
+    <main class="container">
 
-        <div class="hero-content">
-            <span class="hero-label">WELCOME TO QUEEN STORE</span>
-            <h1>Queen Store</h1>
-            <p>كل اللي بتحبيه.. هتلاقيه عندنا</p>
+        <h2 class="main-title">تسوقي حسب القسم</h2>
 
-            <div class="hero-buttons">
-                <a href="#products" class="btn">تسوّقي الآن</a>
-                <a href="#categories" class="btn btn-outline">
-                    اكتشفي الأقسام
-                </a>
-            </div>
-        </div>
-    </section>
+        <div class="category-list">
 
-    <!-- Categories -->
-    <section class="section" id="categories">
-        <div class="section-heading">
-            <span>اختاري اللي يناسبك</span>
-            <h2>تسوّقي حسب القسم</h2>
-            <p>كل اختياراتك المفضلة في مكان واحد</p>
-        </div>
+            <!-- قسم الدريسات -->
+            <input type="checkbox" id="dresses-toggle" class="category-toggle">
 
-        <div class="category-grid">
-            <a href="#products" class="category-card">
-                <span>👜</span>
-                <h3>الشنط</h3>
-            </a>
-
-            <a href="#products" class="category-card">
+            <label for="dresses-toggle" class="category-button">
                 <span>👗</span>
-                <h3>الفساتين</h3>
-            </a>
+                <span>قسم الدريسات</span>
+                <span class="arrow">⌄</span>
+            </label>
 
-            <a href="#products" class="category-card">
-                <span>💎</span>
-                <h3>الإكسسوارات</h3>
-            </a>
+            <!-- المنتجات الأربعة -->
+            <section class="products-section">
 
-            <a href="#products" class="category-card">
-                <span>💄</span>
-                <h3>الجمال</h3>
-            </a>
-        </div>
-    </section>
+                <h2>دريسات Queen Store 💗</h2>
+                <p class="section-description">
+                    اختاري إطلالتك المفضلة
+                </p>
 
-    <!-- Products -->
-    <section class="section products-section" id="products">
-        <div class="section-heading">
-            <span>اختيارات مميزة ليكي</span>
-            <h2>منتجات Queen Store</h2>
-            <p>اختاري منتجاتك المفضلة</p>
-        </div>
+                <div class="products-grid">
 
-        <div class="product-grid" id="product-grid">
+                    <!-- المنتج الأول -->
+                    <article class="product-card">
+                        <img
+                            src="IMG_٢٢١٢٢٨_٢٠٢٦١٠٢٠.png"
+                            alt="دريس من كوين ستور"
+                        >
+                        <h3>دريس أنيق</h3>
+                        <p>اختيارك المميز 💕</p>
+                    </article>
 
-            <article class="product-card"
-                data-name="شنطة أنيقة"
-                data-category="شنط"
-                data-price="450">
+                    <!-- المنتج الثاني -->
+                    <article class="product-card">
+                        <div class="image-placeholder">
+                            <span>👗</span>
+                            <p>صورة المنتج الثاني</p>
+                        </div>
+                        <h3>دريس جديد</h3>
+                        <p>قريبًا في المتجر</p>
+                    </article>
 
-                <div class="product-image">
-                    <img src="220173205_nocolor_fr.webp"
-                         alt="شنطة أنيقة">
-                    <span class="product-tag">مميز</span>
+                    <!-- المنتج الثالث -->
+                    <article class="product-card">
+                        <div class="image-placeholder">
+                            <span>🎀</span>
+                            <p>صورة المنتج الثالث</p>
+                        </div>
+                        <h3>دريس مميز</h3>
+                        <p>قريبًا في المتجر</p>
+                    </article>
+
+                    <!-- المنتج الرابع -->
+                    <article class="product-card">
+                        <div class="image-placeholder">
+                            <span>🌸</span>
+                            <p>صورة المنتج الرابع</p>
+                        </div>
+                        <h3>دريس جديد</h3>
+                        <p>قريبًا في المتجر</p>
+                    </article>
+
                 </div>
-
-                <div class="product-info">
-                    <span class="product-category">شنط</span>
-                    <h3>شنطة أنيقة</h3>
-                    <p class="product-price">450 جنيه</p>
-                    <button class="add-to-cart">أضيفي للسلة</button>
-                </div>
-            </article>
-
-            <article class="product-card"
-                data-name="فستان أنيق"
-                data-category="فساتين"
-                data-price="650">
-
-                <div class="product-image">
-                    <img src="51319MVDKWL.jpg"
-                         alt="فستان أنيق">
-                </div>
-
-                <div class="product-info">
-                    <span class="product-category">فساتين</span>
-                    <h3>فستان أنيق</h3>
-                    <p class="product-price">650 جنيه</p>
-                    <button class="add-to-cart">أضيفي للسلة</button>
-                </div>
-            </article>
-
-            <article class="product-card"
-                data-name="إكسسوارات"
-                data-category="إكسسوارات"
-                data-price="150">
-
-                <div class="product-image">
-                    <img src="IMG_٢١٠٣٥٠_٢٠٢٦١٠٢٠.jpg"
-                         alt="إكسسوارات">
-                </div>
-
-                <div class="product-info">
-                    <span class="product-category">إكسسوارات</span>
-                    <h3>إكسسوارات مميزة</h3>
-                    <p class="product-price">150 جنيه</p>
-                    <button class="add-to-cart">أضيفي للسلة</button>
-                </div>
-            </article>
-
-            <article class="product-card"
-                data-name="سماعات"
-                data-category="إلكترونيات"
-                data-price="350">
-
-                <div class="product-image">
-                    <img src="IMG_٢١٠٤١٠_٢٠٢٦١٠٢٠.jpg"
-                         alt="سماعات">
-                </div>
-
-                <div class="product-info">
-                    <span class="product-category">إلكترونيات</span>
-                    <h3>سماعات</h3>
-                    <p class="product-price">350 جنيه</p>
-                    <button class="add-to-cart">أضيفي للسلة</button>
-                </div>
-            </article>
-
-            <article class="product-card"
-                data-name="منتجات تجميل"
-                data-category="جمال"
-                data-price="250">
-
-                <div class="product-image">
-                    <img src="IMG_٢١٠٥١٨_٢٠٢٦١٠٢٠.jpg"
-                         alt="منتجات تجميل">
-                </div>
-
-                <div class="product-info">
-                    <span class="product-category">جمال</span>
-                    <h3>منتجات تجميل</h3>
-                    <p class="product-price">250 جنيه</p>
-                    <button class="add-to-cart">أضيفي للسلة</button>
-                </div>
-            </article>
-
-            <article class="product-card"
-                data-name="بوكس هدايا"
-                data-category="هدايا"
-                data-price="300">
-
-                <div class="product-image">
-                    <img src="IMG_٢١٠٥٣١_٢٠٢٦١٠٢٠.jpg"
-                         alt="بوكس هدايا">
-                </div>
-
-                <div class="product-info">
-                    <span class="product-category">هدايا</span>
-                    <h3>بوكس هدايا</h3>
-                    <p class="product-price">300 جنيه</p>
-                    <button class="add-to-cart">أضيفي للسلة</button>
-                </div>
-            </article>
-
-            <article class="product-card"
-                data-name="منتج مميز"
-                data-category="متنوع"
-                data-price="200">
-
-                <div class="product-image">
-                    <img src="IMG_٢١١٠٤٩_٢٠٢٦١٠٢٠.jpg"
-                         alt="منتج مميز">
-                </div>
-
-                <div class="product-info">
-                    <span class="product-category">متنوع</span>
-                    <h3>منتج مميز</h3>
-                    <p class="product-price">200 جنيه</p>
-                    <button class="add-to-cart">أضيفي للسلة</button>
-                </div>
-            </article>
-
-            <article class="product-card"
-                data-name="منتج جديد"
-                data-category="متنوع"
-                data-price="180">
-
-                <div class="product-image">
-                    <img src="IMG_٢١١١٠١_٢٠٢٦١٠٢٠.jpg"
-                         alt="منتج جديد">
-                </div>
-
-                <div class="product-info">
-                    <span class="product-category">متنوع</span>
-                    <h3>منتج جديد</h3>
-                    <p class="product-price">180 جنيه</p>
-                    <button class="add-to-cart">أضيفي للسلة</button>
-                </div>
-            </article>
-
-            <article class="product-card"
-                data-name="اختيار مميز"
-                data-category="متنوع"
-                data-price="220">
-
-                <div class="product-image">
-                    <img src="IMG_٢١١١١٨_٢٠٢٦١٠٢٠.jpg"
-                         alt="اختيار مميز">
-                </div>
-
-                <div class="product-info">
-                    <span class="product-category">متنوع</span>
-                    <h3>اختيار مميز</h3>
-                    <p class="product-price">220 جنيه</p>
-                    <button class="add-to-cart">أضيفي للسلة</button>
-                </div>
-            </article>
-
-            <article class="product-card"
-                data-name="منتج إضافي"
-                data-category="متنوع"
-                data-price="190">
-
-                <div class="product-image">
-                    <img src="IMG_٢١١١٣٢_٢٠٢٦١٠٢٠.jpg"
-                         alt="منتج إضافي">
-                </div>
-
-                <div class="product-info">
-                    <span class="product-category">متنوع</span>
-                    <h3>منتج إضافي</h3>
-                    <p class="product-price">190 جنيه</p>
-                    <button class="add-to-cart">أضيفي للسلة</button>
-                </div>
-            </article>
+            </section>
 
         </div>
-    </section>
+    </main>
 
-    <!-- Shopping Cart -->
-    <section class="section cart-section" id="cart">
-        <div class="section-heading">
-            <span>مشترياتك</span>
-            <h2>سلة التسوق 🛍️</h2>
-        </div>
-
-        <div id="cart-items" class="cart-items">
-            <p class="empty-cart">السلة فارغة حاليًا.</p>
-        </div>
-
-        <div class="cart-summary">
-            <h3>الإجمالي: <span id="cart-total">0</span> جنيه</h3>
-            <button class="btn" id="checkout-btn">إتمام الطلب عبر واتساب</button>
-        </div>
-    </section>
-
-    <!-- About -->
-    <section class="section about-section" id="about">
-        <div class="section-heading">
-            <span>أهلًا بيكي في عالمنا</span>
-            <h2>عن Queen Store</h2>
-            <p>
-                وجهتك لاكتشاف منتجات متنوعة واختيارات مميزة،
-                بتصميم بسيط وتجربة تسوق سهلة.
-            </p>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="section contact-section" id="contact">
-        <div class="section-heading">
-            <span>إحنا هنا علشانك</span>
-            <h2>تواصلي معنا</h2>
-            <p>للاستفسار عن المنتجات والطلبات</p>
-
-            <a class="btn"
-               href="https://wa.me/201115830573"
-               target="_blank"
-               rel="noopener">
-                تواصلي عبر واتساب
-            </a>
-
-            <p class="contact-phone">01115830573</p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <a href="#home" class="logo">♛ Queen Store</a>
-        <p>كل اللي بتحبيه.. في مكان واحد</p>
-        <p>© 2026 Queen Store. جميع الحقوق محفوظة.</p>
+    <footer>
+        <p>© 2026 Queen Store | Made with love 💗</p>
     </footer>
 
-    <script src="script.js"></script>
 </body>
 </html>
