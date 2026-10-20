@@ -1,251 +1,328 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Queen Store | كوين ستور</title>
-
-    <meta name="description" content="Queen Store - اكتشفي أجمل الملابس والشنط والإكسسوارات والهدايا.">
-
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
     <!-- Header -->
-    <header>
-        <div class="container">
-            <h1>👑 Queen Store</h1>
+    <header class="header">
+        <a href="#home" class="logo">♛ Queen Store</a>
 
-            <nav class="nav-links">
-                <a href="#home">الرئيسية</a>
-                <a href="#categories">الأقسام</a>
-                <a href="#products">المنتجات</a>
-                <a href="#about">من نحن</a>
-                <a href="#contact">تواصلي معنا</a>
-            </nav>
-        </div>
+        <nav class="navbar">
+            <a href="#home">الرئيسية</a>
+            <a href="#categories">الأقسام</a>
+            <a href="#products">المنتجات</a>
+            <a href="#about">من نحن</a>
+            <a href="#contact">تواصلي معنا</a>
+        </nav>
+
+        <a href="#cart" class="cart-link">
+            🛍️ السلة <span id="cart-count">0</span>
+        </a>
     </header>
 
-    <!-- Home -->
-    <main>
-        <section class="hero container" id="home">
-            <div class="hero-content">
-                <p class="eyebrow">WELCOME TO QUEEN STORE</p>
+    <!-- Hero Banner -->
+    <section class="hero" id="home">
+        <div class="hero-overlay"></div>
 
-                <h2>كل اللي بتحبيه<br>في مكان واحد 💗</h2>
+        <div class="hero-content">
+            <span class="hero-label">WELCOME TO QUEEN STORE</span>
+            <h1>Queen Store</h1>
+            <p>كل اللي بتحبيه.. هتلاقيه عندنا</p>
 
-                <p>
-                    اكتشفي عالم من الأناقة والجمال مع Queen Store،
-                    واختاري المنتجات اللي تناسب ذوقك.
-                </p>
-
-                <a href="#products" class="button">تسوقي الآن</a>
-            </div>
-        </section>
-
-        <!-- Categories -->
-        <section class="section container" id="categories">
-            <div class="section-heading">
-                <p class="eyebrow">OUR CATEGORIES</p>
-                <h2>تسوقي حسب القسم</h2>
-                <p>اختاري القسم المفضل ليكي</p>
-            </div>
-
-            <div class="category-grid">
-                <a href="#products" class="category-card">
-                    <span>👜</span>
-                    <h3>شنط</h3>
-                </a>
-
-                <a href="#products" class="category-card">
-                    <span>👗</span>
-                    <h3>ملابس</h3>
-                </a>
-
-                <a href="#products" class="category-card">
-                    <span>💍</span>
-                    <h3>إكسسوارات</h3>
-                </a>
-
-                <a href="#products" class="category-card">
-                    <span>💄</span>
-                    <h3>ميك أب</h3>
-                </a>
-
-                <a href="#products" class="category-card">
-                    <span>🎧</span>
-                    <h3>إلكترونيات</h3>
-                </a>
-
-                <a href="#products" class="category-card">
-                    <span>🎁</span>
-                    <h3>هدايا</h3>
+            <div class="hero-buttons">
+                <a href="#products" class="btn">تسوّقي الآن</a>
+                <a href="#categories" class="btn btn-outline">
+                    اكتشفي الأقسام
                 </a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Products -->
-        <section class="section container" id="products">
-            <div class="section-heading">
-                <p class="eyebrow">OUR PRODUCTS</p>
-                <h2>منتجاتنا المميزة</h2>
-                <p>اختيارات مميزة ليكي</p>
-            </div>
+    <!-- Categories -->
+    <section class="section" id="categories">
+        <div class="section-heading">
+            <span>اختاري اللي يناسبك</span>
+            <h2>تسوّقي حسب القسم</h2>
+            <p>كل اختياراتك المفضلة في مكان واحد</p>
+        </div>
 
-            <div class="product-grid">
+        <div class="category-grid">
+            <a href="#products" class="category-card">
+                <span>👜</span>
+                <h3>الشنط</h3>
+            </a>
 
-                <article class="product-card">
-                    <div class="product-image">👜</div>
-                    <div class="product-info">
-                        <h3>شنطة أنيقة</h3>
-                        <p>شنطة مناسبة لكل يوم</p>
-                        <strong>450 جنيه</strong>
-                        <button type="button">أضيفي للسلة</button>
-                    </div>
-                </article>
+            <a href="#products" class="category-card">
+                <span>👗</span>
+                <h3>الفساتين</h3>
+            </a>
 
-                <article class="product-card">
-                    <div class="product-image">👗</div>
-                    <div class="product-info">
-                        <h3>فستان مميز</h3>
-                        <p>إطلالة بسيطة وأنيقة</p>
-                        <strong>650 جنيه</strong>
-                        <button type="button">أضيفي للسلة</button>
-                    </div>
-                </article>
+            <a href="#products" class="category-card">
+                <span>💎</span>
+                <h3>الإكسسوارات</h3>
+            </a>
 
-                <article class="product-card">
-                    <div class="product-image">💍</div>
-                    <div class="product-info">
-                        <h3>إكسسوارات</h3>
-                        <p>تفاصيل تكمل أناقتك</p>
-                        <strong>150 جنيه</strong>
-                        <button type="button">أضيفي للسلة</button>
-                    </div>
-                </article>
+            <a href="#products" class="category-card">
+                <span>💄</span>
+                <h3>الجمال</h3>
+            </a>
+        </div>
+    </section>
 
-                <article class="product-card">
-                    <div class="product-image">💄</div>
-                    <div class="product-info">
-                        <h3>منتجات تجميل</h3>
-                        <p>اختيارات للجمال والعناية</p>
-                        <strong>250 جنيه</strong>
-                        <button type="button">أضيفي للسلة</button>
-                    </div>
-                </article>
+    <!-- Products -->
+    <section class="section products-section" id="products">
+        <div class="section-heading">
+            <span>اختيارات مميزة ليكي</span>
+            <h2>منتجات Queen Store</h2>
+            <p>اختاري منتجاتك المفضلة</p>
+        </div>
 
-                <article class="product-card">
-                    <div class="product-image">🎧</div>
-                    <div class="product-info">
-                        <h3>سماعة</h3>
-                        <p>استمتعي بصوتك المفضل</p>
-                        <strong>350 جنيه</strong>
-                        <button type="button">أضيفي للسلة</button>
-                    </div>
-                </article>
+        <div class="product-grid" id="product-grid">
 
-                <article class="product-card">
-                    <div class="product-image">🎁</div>
-                    <div class="product-info">
-                        <h3>بوكس هدايا</h3>
-                        <p>هدية مميزة لأحبابك</p>
-                        <strong>300 جنيه</strong>
-                        <button type="button">أضيفي للسلة</button>
-                    </div>
-                </article>
+            <article class="product-card"
+                data-name="شنطة أنيقة"
+                data-category="شنط"
+                data-price="450">
 
-            </div>
-
-            <p class="products-note">
-                الأسعار المعروضة تجريبية ويمكن تعديلها حسب المنتجات الحقيقية.
-            </p>
-        </section>
-
-        <!-- About -->
-        <section class="section container" id="about">
-            <div class="section-heading">
-                <p class="eyebrow">ABOUT US</p>
-                <h2>من نحن؟</h2>
-            </div>
-
-            <div class="about-card">
-                <h3>أهلًا بيكي في Queen Store 👑</h3>
-
-                <p>
-                    Queen Store هو مكانك لاكتشاف منتجات متنوعة تجمع بين
-                    الأناقة والجمال والاختيارات المميزة.
-                    هدفنا إن تجربة التسوق تكون سهلة وممتعة.
-                </p>
-
-                <div class="features-grid">
-                    <div>
-                        <span>💗</span>
-                        <h4>اختيارات مميزة</h4>
-                        <p>منتجات تناسب أذواق مختلفة</p>
-                    </div>
-
-                    <div>
-                        <span>✨</span>
-                        <h4>تجربة سهلة</h4>
-                        <p>تصفحي المنتجات بسهولة</p>
-                    </div>
-
-                    <div>
-                        <span>📱</span>
-                        <h4>تواصل مباشر</h4>
-                        <p>تواصلي معنا للاستفسار</p>
-                    </div>
+                <div class="product-image">
+                    <img src="220173205_nocolor_fr.webp"
+                         alt="شنطة أنيقة">
+                    <span class="product-tag">مميز</span>
                 </div>
-            </div>
-        </section>
 
-        <!-- Contact -->
-        <section class="section container" id="contact">
-            <div class="section-heading">
-                <p class="eyebrow">CONTACT US</p>
-                <h2>تواصلي معنا 💗</h2>
-                <p>يسعدنا تواصلك مع Queen Store</p>
-            </div>
-
-            <div class="contact-card">
-                <p>📱 رقم خدمة العملاء</p>
-
-                <p class="contact-number" dir="ltr">
-                    01115830573
-                </p>
-
-                <div class="contact-buttons">
-                    <a class="button" href="tel:+201115830573">
-                        📞 اتصلي بينا
-                    </a>
-
-                    <a
-                        class="button whatsapp-button"
-                        href="https://wa.me/201115830573"
-                        target="_blank"
-                        rel="noopener noreferrer">
-                        💚 واتساب
-                    </a>
+                <div class="product-info">
+                    <span class="product-category">شنط</span>
+                    <h3>شنطة أنيقة</h3>
+                    <p class="product-price">450 جنيه</p>
+                    <button class="add-to-cart">أضيفي للسلة</button>
                 </div>
-            </div>
-        </section>
+            </article>
 
-    </main>
+            <article class="product-card"
+                data-name="فستان أنيق"
+                data-category="فساتين"
+                data-price="650">
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <h3>👑 Queen Store</h3>
+                <div class="product-image">
+                    <img src="51319MVDKWL.jpg"
+                         alt="فستان أنيق">
+                </div>
 
-            <p>اختياراتك المميزة تبدأ من هنا 💗</p>
+                <div class="product-info">
+                    <span class="product-category">فساتين</span>
+                    <h3>فستان أنيق</h3>
+                    <p class="product-price">650 جنيه</p>
+                    <button class="add-to-cart">أضيفي للسلة</button>
+                </div>
+            </article>
 
+            <article class="product-card"
+                data-name="إكسسوارات"
+                data-category="إكسسوارات"
+                data-price="150">
+
+                <div class="product-image">
+                    <img src="IMG_٢١٠٣٥٠_٢٠٢٦١٠٢٠.jpg"
+                         alt="إكسسوارات">
+                </div>
+
+                <div class="product-info">
+                    <span class="product-category">إكسسوارات</span>
+                    <h3>إكسسوارات مميزة</h3>
+                    <p class="product-price">150 جنيه</p>
+                    <button class="add-to-cart">أضيفي للسلة</button>
+                </div>
+            </article>
+
+            <article class="product-card"
+                data-name="سماعات"
+                data-category="إلكترونيات"
+                data-price="350">
+
+                <div class="product-image">
+                    <img src="IMG_٢١٠٤١٠_٢٠٢٦١٠٢٠.jpg"
+                         alt="سماعات">
+                </div>
+
+                <div class="product-info">
+                    <span class="product-category">إلكترونيات</span>
+                    <h3>سماعات</h3>
+                    <p class="product-price">350 جنيه</p>
+                    <button class="add-to-cart">أضيفي للسلة</button>
+                </div>
+            </article>
+
+            <article class="product-card"
+                data-name="منتجات تجميل"
+                data-category="جمال"
+                data-price="250">
+
+                <div class="product-image">
+                    <img src="IMG_٢١٠٥١٨_٢٠٢٦١٠٢٠.jpg"
+                         alt="منتجات تجميل">
+                </div>
+
+                <div class="product-info">
+                    <span class="product-category">جمال</span>
+                    <h3>منتجات تجميل</h3>
+                    <p class="product-price">250 جنيه</p>
+                    <button class="add-to-cart">أضيفي للسلة</button>
+                </div>
+            </article>
+
+            <article class="product-card"
+                data-name="بوكس هدايا"
+                data-category="هدايا"
+                data-price="300">
+
+                <div class="product-image">
+                    <img src="IMG_٢١٠٥٣١_٢٠٢٦١٠٢٠.jpg"
+                         alt="بوكس هدايا">
+                </div>
+
+                <div class="product-info">
+                    <span class="product-category">هدايا</span>
+                    <h3>بوكس هدايا</h3>
+                    <p class="product-price">300 جنيه</p>
+                    <button class="add-to-cart">أضيفي للسلة</button>
+                </div>
+            </article>
+
+            <article class="product-card"
+                data-name="منتج مميز"
+                data-category="متنوع"
+                data-price="200">
+
+                <div class="product-image">
+                    <img src="IMG_٢١١٠٤٩_٢٠٢٦١٠٢٠.jpg"
+                         alt="منتج مميز">
+                </div>
+
+                <div class="product-info">
+                    <span class="product-category">متنوع</span>
+                    <h3>منتج مميز</h3>
+                    <p class="product-price">200 جنيه</p>
+                    <button class="add-to-cart">أضيفي للسلة</button>
+                </div>
+            </article>
+
+            <article class="product-card"
+                data-name="منتج جديد"
+                data-category="متنوع"
+                data-price="180">
+
+                <div class="product-image">
+                    <img src="IMG_٢١١١٠١_٢٠٢٦١٠٢٠.jpg"
+                         alt="منتج جديد">
+                </div>
+
+                <div class="product-info">
+                    <span class="product-category">متنوع</span>
+                    <h3>منتج جديد</h3>
+                    <p class="product-price">180 جنيه</p>
+                    <button class="add-to-cart">أضيفي للسلة</button>
+                </div>
+            </article>
+
+            <article class="product-card"
+                data-name="اختيار مميز"
+                data-category="متنوع"
+                data-price="220">
+
+                <div class="product-image">
+                    <img src="IMG_٢١١١١٨_٢٠٢٦١٠٢٠.jpg"
+                         alt="اختيار مميز">
+                </div>
+
+                <div class="product-info">
+                    <span class="product-category">متنوع</span>
+                    <h3>اختيار مميز</h3>
+                    <p class="product-price">220 جنيه</p>
+                    <button class="add-to-cart">أضيفي للسلة</button>
+                </div>
+            </article>
+
+            <article class="product-card"
+                data-name="منتج إضافي"
+                data-category="متنوع"
+                data-price="190">
+
+                <div class="product-image">
+                    <img src="IMG_٢١١١٣٢_٢٠٢٦١٠٢٠.jpg"
+                         alt="منتج إضافي">
+                </div>
+
+                <div class="product-info">
+                    <span class="product-category">متنوع</span>
+                    <h3>منتج إضافي</h3>
+                    <p class="product-price">190 جنيه</p>
+                    <button class="add-to-cart">أضيفي للسلة</button>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- Shopping Cart -->
+    <section class="section cart-section" id="cart">
+        <div class="section-heading">
+            <span>مشترياتك</span>
+            <h2>سلة التسوق 🛍️</h2>
+        </div>
+
+        <div id="cart-items" class="cart-items">
+            <p class="empty-cart">السلة فارغة حاليًا.</p>
+        </div>
+
+        <div class="cart-summary">
+            <h3>الإجمالي: <span id="cart-total">0</span> جنيه</h3>
+            <button class="btn" id="checkout-btn">إتمام الطلب عبر واتساب</button>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="section about-section" id="about">
+        <div class="section-heading">
+            <span>أهلًا بيكي في عالمنا</span>
+            <h2>عن Queen Store</h2>
             <p>
-                جميع الحقوق محفوظة &copy; Queen Store 2026
+                وجهتك لاكتشاف منتجات متنوعة واختيارات مميزة،
+                بتصميم بسيط وتجربة تسوق سهلة.
             </p>
         </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact-section" id="contact">
+        <div class="section-heading">
+            <span>إحنا هنا علشانك</span>
+            <h2>تواصلي معنا</h2>
+            <p>للاستفسار عن المنتجات والطلبات</p>
+
+            <a class="btn"
+               href="https://wa.me/201115830573"
+               target="_blank"
+               rel="noopener">
+                تواصلي عبر واتساب
+            </a>
+
+            <p class="contact-phone">01115830573</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <a href="#home" class="logo">♛ Queen Store</a>
+        <p>كل اللي بتحبيه.. في مكان واحد</p>
+        <p>© 2026 Queen Store. جميع الحقوق محفوظة.</p>
     </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>
