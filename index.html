@@ -1,9 +1,536 @@
-<html dir="rtl">
-<head><title>Queen Store</title></head>
-<body style="background:#ffe4ec;text-align:center;font-family:sans-serif">
-<h1 style="color:#d81b60">👑 Queen Store</h1>
-<h2>متجر الملكة</h2>
-<p>أحلى لبس وميكب واكسسوارات</p>
-<button style="background:#d81b60;color:white;padding:10px 20px;border-radius:20px;border:none">تسوقي الآن</button>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queen Store | متجر الملكة</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff8f4;
+            color: #49352f;
+            line-height: 1.8;
+        }
+
+        header {
+            background: #d8a08c;
+            color: white;
+            text-align: center;
+            padding: 25px 12px;
+        }
+
+        header h1 {
+            font-size: 30px;
+        }
+
+        header p {
+            font-size: 15px;
+        }
+
+        nav {
+            background: #fff;
+            padding: 12px;
+            text-align: center;
+            box-shadow: 0 2px 8px #00000010;
+            position: sticky;
+            top: 0;
+        }
+
+        nav a {
+            color: #8d5546;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 35px 15px;
+            background: #f8e6df;
+        }
+
+        .hero h2 {
+            color: #985d4d;
+            font-size: 25px;
+        }
+
+        .hero p {
+            margin: 10px 0;
+        }
+
+        button {
+            background: #b97863;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #925742;
+        }
+
+        .container {
+            padding: 25px 15px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #985d4d;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dfb9aa;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 22px;
+        }
+
+        .categories button {
+            background: #ead0c5;
+            color: #603e33;
+        }
+
+        .categories button.active {
+            background: #a96651;
+            color: white;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .product {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px #7d4d3512;
+            text-align: center;
+            padding-bottom: 15px;
+        }
+
+        .product-image {
+            height: 115px;
+            background: #f4e4dc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 48px;
+        }
+
+        .product h3 {
+            font-size: 16px;
+            margin: 8px 4px;
+        }
+
+        .product p {
+            color: #a15f49;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product button {
+            padding: 8px 10px;
+            font-size: 13px;
+        }
+
+        .cart {
+            background: white;
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 25px;
+            box-shadow: 0 3px 12px #7d4d3512;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            border-bottom: 1px solid #f0e1da;
+            padding: 10px 0;
+        }
+
+        .cart-item button {
+            padding: 5px 9px;
+        }
+
+        .total {
+            font-size: 19px;
+            font-weight: bold;
+            color: #985d4d;
+            margin: 15px 0;
+        }
+
+        .checkout {
+            width: 100%;
+        }
+
+        .about {
+            background: #f8e6df;
+            text-align: center;
+            padding: 25px 15px;
+            margin-top: 25px;
+        }
+
+        footer {
+            background: #49352f;
+            color: white;
+            text-align: center;
+            padding: 18px 10px;
+            font-size: 13px;
+        }
+
+        .empty {
+            text-align: center;
+            color: #8c7770;
+            padding: 12px 0;
+        }
+
+        @media (min-width: 650px) {
+            .products {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .product-image {
+                height: 160px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>👑 Queen Store</h1>
+        <p>كل اللي بتحبيه في مكان واحد</p>
+    </header>
+
+    <nav>
+        <a href="#home">الرئيسية</a>
+        <a href="#products">المنتجات</a>
+        <a href="#cart">السلة 🛒</a>
+    </nav>
+
+    <section class="hero" id="home">
+        <h2>أهلًا بيكي في متجر الملكة 💗</h2>
+        <p>اكتشفي أجمل الملابس والإكسسوارات والشنط.</p>
+        <button onclick="goToProducts()">تسوقي الآن</button>
+    </section>
+
+    <main class="container" id="products">
+        <h2 class="section-title">✨ منتجاتنا ✨</h2>
+
+        <input
+            type="search"
+            id="search"
+            class="search-box"
+            placeholder="ابحثي عن منتج..."
+            oninput="renderProducts()"
+        >
+
+        <div class="categories">
+            <button class="active" onclick="setCategory('الكل', this)">الكل</button>
+            <button onclick="setCategory('شنط', this)">شنط</button>
+            <button onclick="setCategory('إكسسوارات', this)">إكسسوارات</button>
+            <button onclick="setCategory('ملابس', this)">ملابس</button>
+            <button onclick="setCategory('ميكب', this)">ميكب</button>
+        </div>
+
+        <div class="products" id="products-list"></div>
+
+        <section class="cart" id="cart">
+            <h2>🛒 سلة المشتريات</h2>
+            <p id="cart-count">عدد القطع: 0</p>
+
+            <div id="cart-items">
+                <p class="empty">لسه مفيش منتجات في السلة 💗</p>
+            </div>
+
+            <p class="total" id="cart-total">الإجمالي: 0 جنيه</p>
+
+            <button class="checkout" onclick="checkout()">
+                إتمام الطلب
+            </button>
+        </section>
+    </main>
+
+    <section class="about" id="about">
+        <h2>💗 ليه Queen Store؟</h2>
+        <p>اختيارات مميزة، وأسعار مناسبة، وتجربة تسوق سهلة.</p>
+    </section>
+
+    <footer>
+        <p>© 2026 Queen Store - جميع الحقوق محفوظة</p>
+        <p>صُنع بكل حب 💗</p>
+    </footer>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                name: "شنطة أنيقة",
+                price: 350,
+                category: "شنط",
+                emoji: "👜"
+            },
+            {
+                id: 2,
+                name: "إكسسوارات ذهبية",
+                price: 150,
+                category: "إكسسوارات",
+                emoji: "📿"
+            },
+            {
+                id: 3,
+                name: "فستان أنيق",
+                price: 600,
+                category: "ملابس",
+                emoji: "👗"
+            },
+            {
+                id: 4,
+                name: "أحمر شفاه",
+                price: 120,
+                category: "ميكب",
+                emoji: "💄"
+            },
+            {
+                id: 5,
+                name: "نظارة شمس",
+                price: 200,
+                category: "إكسسوارات",
+                emoji: "🕶️"
+            },
+            {
+                id: 6,
+                name: "حقيبة صغيرة",
+                price: 280,
+                category: "شنط",
+                emoji: "👛"
+            },
+            {
+                id: 7,
+                name: "بلوزة أنيقة",
+                price: 300,
+                category: "ملابس",
+                emoji: "👚"
+            },
+            {
+                id: 8,
+                name: "مجموعة مكياج",
+                price: 450,
+                category: "ميكب",
+                emoji: "💅"
+            }
+        ];
+
+        let cart = [];
+        let selectedCategory = "الكل";
+
+        function renderProducts() {
+            const list = document.getElementById("products-list");
+            const search = document
+                .getElementById("search")
+                .value.trim().toLowerCase();
+
+            const filtered = products.filter(function(product) {
+                const matchesSearch =
+                    product.name.toLowerCase().includes(search);
+
+                const matchesCategory =
+                    selectedCategory === "الكل" ||
+                    product.category === selectedCategory;
+
+                return matchesSearch && matchesCategory;
+            });
+
+            if (filtered.length === 0) {
+                list.innerHTML =
+                    '<p class="empty">مفيش منتجات مطابقة للبحث.</p>';
+                return;
+            }
+
+            list.innerHTML = filtered.map(function(product) {
+                return `
+                    <article class="product">
+                        <div class="product-image">
+                            ${product.emoji}
+                        </div>
+
+                        <h3>${product.name}</h3>
+
+                        <p>${product.price} جنيه</p>
+
+                        <button onclick="addToCart(${product.id})">
+                            أضيفي للسلة +
+                        </button>
+                    </article>
+                `;
+            }).join("");
+        }
+
+        function setCategory(category, button) {
+            selectedCategory = category;
+
+            document.querySelectorAll(".categories button")
+                .forEach(function(item) {
+                    item.classList.remove("active");
+                });
+
+            button.classList.add("active");
+            renderProducts();
+        }
+
+        function addToCart(id) {
+            const product = products.find(function(item) {
+                return item.id === id;
+            });
+
+            const existing = cart.find(function(item) {
+                return item.id === id;
+            });
+
+            if (existing) {
+                existing.quantity++;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    quantity: 1
+                });
+            }
+
+            renderCart();
+            alert("اتضاف " + product.name + " للسلة 💗");
+        }
+
+        function changeQuantity(id, amount) {
+            const item = cart.find(function(product) {
+                return product.id === id;
+            });
+
+            if (!item) return;
+
+            item.quantity += amount;
+
+            if (item.quantity <= 0) {
+                cart = cart.filter(function(product) {
+                    return product.id !== id;
+                });
+            }
+
+            renderCart();
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(function(item) {
+                return item.id !== id;
+            });
+
+            renderCart();
+        }
+
+        function renderCart() {
+            const itemsContainer =
+                document.getElementById("cart-items");
+
+            const count = cart.reduce(function(total, item) {
+                return total + item.quantity;
+            }, 0);
+
+            const total = cart.reduce(function(sum, item) {
+                return sum + item.price * item.quantity;
+            }, 0);
+
+            document.getElementById("cart-count").textContent =
+                "عدد القطع: " + count;
+
+            document.getElementById("cart-total").textContent =
+                "الإجمالي: " + total + " جنيه";
+
+            if (cart.length === 0) {
+                itemsContainer.innerHTML =
+                    '<p class="empty">لسه مفيش منتجات في السلة 💗</p>';
+                return;
+            }
+
+            itemsContainer.innerHTML = cart.map(function(item) {
+                return `
+                    <div class="cart-item">
+                        <div>
+                            <strong>${item.name}</strong>
+                            <br>
+                            ${item.price} جنيه × ${item.quantity}
+                        </div>
+
+                        <div>
+                            <button
+                                onclick="changeQuantity(${item.id}, 1)">
+                                +
+                            </button>
+
+                            <button
+                                onclick="changeQuantity(${item.id}, -1)">
+                                -
+                            </button>
+
+                            <button
+                                onclick="removeFromCart(${item.id})">
+                                حذف
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        function goToProducts() {
+            document.getElementById("products")
+                .scrollIntoView({ behavior: "smooth" });
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert("أضيفي منتجات للسلة الأول 💗");
+                return;
+            }
+
+            alert(
+                "إجمالي طلبك " +
+                document.getElementById("cart-total").textContent +
+                "\nدي نسخة تجريبية من المتجر، ولسه محتاجين نربط الطلبات بالـ Backend."
+            );
+        }
+
+        renderProducts();
+        renderCart();
+    </script>
+
 </body>
 </html>
