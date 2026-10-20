@@ -1,53 +1,43 @@
-
-/* =================================
-   QUEEN STORE - PREMIUM DESIGN
-   ================================= */
+/* =========================
+   1. General Settings
+========================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
 
 :root {
-    --rose: #c64268;
-    --rose-dark: #8e294c;
-    --rose-light: #f9e4e9;
-    --pink-pale: #fff5f6;
-    --cream: #fffaf7;
+    --primary: #8e294c;
+    --primary-dark: #641b36;
+    --pink: #f8e4eb;
+    --pink-light: #fff7f9;
+    --cream: #fffaf3;
+    --gold: #c49a52;
+    --text: #392631;
+    --muted: #806c76;
     --white: #ffffff;
-    --gold: #d7a85b;
-    --plum: #321d30;
-    --text: #392637;
-    --muted: #81717e;
-    --border: #f0dfe5;
-    --shadow: 0 8px 25px rgba(91, 39, 61, 0.08);
-    --radius: 18px;
+    --shadow: 0 8px 25px rgba(100, 27, 54, 0.09);
 }
 
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 85px;
+    scroll-padding-top: 100px;
 }
 
 body {
     font-family: 'Cairo', Arial, sans-serif;
     background: var(--cream);
     color: var(--text);
-    line-height: 1.9;
-    font-size: 15px;
+    line-height: 1.8;
 }
 
 a {
-    color: inherit;
     text-decoration: none;
-}
-
-button,
-input {
-    font: inherit;
+    color: inherit;
 }
 
 button,
@@ -56,220 +46,192 @@ a {
 }
 
 button {
+    font-family: inherit;
     cursor: pointer;
 }
 
 .container {
-    width: min(1160px, 92%);
-    margin-inline: auto;
+    width: min(1120px, 92%);
+    margin: 0 auto;
 }
 
-/* HEADER */
+.section {
+    padding-top: 75px;
+    padding-bottom: 30px;
+}
+
+/* =========================
+   2. Header and Navigation
+========================= */
 
 header {
-    background: rgba(255, 250, 247, 0.98);
-    border-bottom: 1px solid var(--border);
-    padding: 25px 0;
-    text-align: center;
+    background: rgba(255, 250, 243, 0.97);
+    border-bottom: 1px solid #f0dce3;
+    padding: 18px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 header h1 {
-    color: var(--rose-dark);
-    font-size: clamp(28px, 5vw, 40px);
+    color: var(--primary);
+    font-size: 27px;
     font-weight: 800;
-    letter-spacing: -1px;
-}
-
-header p {
-    color: var(--muted);
-    margin-top: 5px;
-    font-size: 15px;
-}
-
-/* NAVIGATION */
-
-nav {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: rgba(255, 255, 255, 0.97);
-    border-bottom: 1px solid var(--border);
-    box-shadow: 0 4px 15px rgba(50, 29, 48, 0.04);
 }
 
 .nav-links {
     display: flex;
-    justify-content: center;
     align-items: center;
+    gap: 22px;
     flex-wrap: wrap;
-    gap: 12px 32px;
-    padding-block: 14px;
 }
 
 .nav-links a {
     color: var(--text);
-    font-weight: 700;
     font-size: 14px;
-    transition: color 0.25s ease;
+    font-weight: 700;
+    transition: color 0.3s;
 }
 
 .nav-links a:hover {
-    color: var(--rose);
+    color: var(--primary);
 }
 
-/* HERO SECTION */
-
-.hero {
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-    padding: clamp(55px, 9vw, 100px) 15px;
-    background:
-        radial-gradient(circle at 10% 15%, #ffffff 0, transparent 35%),
-        linear-gradient(135deg, #f8dce3, #fff1ed 55%, #f4d5df);
-}
-
-.hero::before {
-    content: "✧";
-    position: absolute;
-    top: 15px;
-    right: 7%;
-    color: rgba(198, 66, 104, 0.2);
-    font-size: 100px;
-    pointer-events: none;
-}
-
-.hero::after {
-    content: "✧";
-    position: absolute;
-    bottom: 5px;
-    left: 8%;
-    color: rgba(215, 168, 91, 0.45);
-    font-size: 80px;
-    pointer-events: none;
-}
-
-.eyebrow {
-    color: var(--rose);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 3px;
-    margin-bottom: 8px;
-}
-
-.hero h2 {
-    font-size: clamp(26px, 5vw, 43px);
-    line-height: 1.6;
-    color: var(--plum);
-    font-weight: 800;
-    margin-bottom: 12px;
-}
-
-.hero p:not(.eyebrow) {
-    max-width: 620px;
-    margin: 0 auto 25px;
-    color: #705968;
-    font-size: 16px;
-}
+/* =========================
+   3. Buttons
+========================= */
 
 .button {
     display: inline-block;
-    background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+    background: var(--primary);
     color: var(--white);
-    padding: 12px 30px;
-    border-radius: 50px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
     font-weight: 700;
-    box-shadow: 0 7px 18px rgba(198, 66, 104, 0.23);
-    transition: transform 0.25s, box-shadow 0.25s;
+    text-align: center;
+    transition: 0.3s;
 }
 
 .button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(198, 66, 104, 0.3);
+    background: var(--primary-dark);
+    transform: translateY(-2px);
 }
 
-/* GENERAL SECTIONS */
+/* =========================
+   4. Hero Section
+========================= */
 
-.section {
-    padding-block: 65px;
+.hero {
+    min-height: 430px;
+    margin-top: 30px;
+    padding: 65px 55px;
+    display: flex;
+    align-items: center;
+    background:
+        radial-gradient(circle at top left, #f2d5df, transparent 45%),
+        linear-gradient(135deg, #fff1f5, #f8e4eb 55%, #fffaf3);
+    border: 1px solid #f0d5df;
+    border-radius: 28px;
+    overflow: hidden;
 }
+
+.hero-content {
+    max-width: 650px;
+}
+
+.eyebrow {
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.hero h2 {
+    color: var(--primary-dark);
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.hero-content > p:not(.eyebrow) {
+    color: var(--muted);
+    font-size: 16px;
+    margin-bottom: 25px;
+    max-width: 550px;
+}
+
+/* =========================
+   5. Section Headings
+========================= */
 
 .section-heading {
     text-align: center;
     margin-bottom: 35px;
 }
 
-.section-heading h2,
-.about-card > h2 {
-    color: var(--plum);
-    font-size: clamp(24px, 4vw, 32px);
-    font-weight: 800;
-    line-height: 1.6;
+.section-heading h2 {
+    color: var(--primary-dark);
+    font-size: 30px;
+    margin-bottom: 8px;
 }
 
-.section-heading > p:not(.eyebrow) {
+.section-heading > p:last-child {
     color: var(--muted);
-    margin-top: 7px;
-    font-size: 14px;
+    font-size: 15px;
 }
 
-/* CATEGORY CARDS */
+/* =========================
+   6. Categories
+========================= */
 
 .category-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 22px;
+    gap: 20px;
 }
 
 .category-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 185px;
+    min-height: 150px;
+    background: var(--white);
+    border: 1px solid #f1dfe5;
+    border-radius: 20px;
     padding: 25px 15px;
     text-align: center;
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
     box-shadow: var(--shadow);
-    transition: transform 0.25s, border-color 0.25s;
+    transition: transform 0.3s, border-color 0.3s;
 }
 
 .category-card:hover {
-    transform: translateY(-6px);
-    border-color: #e8a6b9;
+    transform: translateY(-5px);
+    border-color: var(--gold);
 }
 
-.category-icon {
-    display: grid;
-    place-items: center;
-    width: 68px;
-    height: 68px;
-    margin-bottom: 12px;
-    background: var(--rose-light);
-    border-radius: 50%;
-    font-size: 32px;
+.category-card span {
+    display: block;
+    font-size: 36px;
+    margin-bottom: 8px;
 }
 
 .category-card h3 {
-    color: var(--plum);
-    font-size: 17px;
-    font-weight: 800;
-    margin-bottom: 5px;
+    color: var(--primary);
+    font-size: 18px;
 }
 
-.category-card p {
-    color: var(--muted);
-    font-size: 13px;
-}
-
-/* PRODUCTS */
-
-.products-section {
-    background: linear-gradient(180deg, #fff2f5, #fff8f6);
-    padding-block: 65px;
-}
+/* =========================
+   7. Products
+========================= */
 
 .product-grid {
     display: grid;
@@ -278,230 +240,252 @@ nav {
 }
 
 .product-card {
-    min-width: 0;
-    overflow: hidden;
     background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border: 1px solid #f0dce3;
+    border-radius: 20px;
+    overflow: hidden;
     box-shadow: var(--shadow);
-    transition: transform 0.25s, box-shadow 0.25s;
+    transition: transform 0.3s;
 }
 
 .product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 14px 30px rgba(91, 39, 61, 0.12);
 }
 
 .product-image {
-    display: grid;
-    place-items: center;
-    min-height: 155px;
-    margin: 10px 10px 0;
-    border-radius: 13px;
-    background: linear-gradient(135deg, #f8dfe5, #fff0e8);
-    font-size: 62px;
+    min-height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #fae7ed, #fff6f8);
+    font-size: 75px;
 }
 
 .product-info {
-    padding: 20px 17px 22px;
-}
-
-.product-category {
-    display: inline-block;
-    padding: 3px 11px;
-    border-radius: 30px;
-    background: var(--rose-light);
-    color: var(--rose-dark);
-    font-size: 11px;
-    font-weight: 800;
-    margin-bottom: 9px;
+    padding: 20px;
+    text-align: center;
 }
 
 .product-info h3 {
-    font-size: 18px;
-    font-weight: 800;
-    color: var(--plum);
-    margin-bottom: 8px;
-}
-
-.product-info > p:not(.price) {
-    color: var(--muted);
-    font-size: 13px;
-    min-height: 45px;
-    margin-bottom: 10px;
-}
-
-.price {
-    color: var(--rose-dark);
+    color: var(--primary-dark);
     font-size: 19px;
-    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.product-info p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.product-info strong {
+    display: block;
+    color: var(--primary);
+    font-size: 20px;
     margin-bottom: 15px;
 }
 
 .product-info button {
     width: 100%;
-    padding: 11px 12px;
+    background: var(--primary);
     color: var(--white);
-    background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+    padding: 11px 15px;
     border: none;
-    border-radius: 10px;
+    border-radius: 25px;
+    font-size: 14px;
     font-weight: 700;
-    transition: opacity 0.2s, transform 0.2s;
+    transition: background 0.3s;
 }
 
 .product-info button:hover {
-    opacity: 0.92;
-    transform: translateY(-2px);
+    background: var(--primary-dark);
 }
 
-.demo-note {
-    margin-top: 28px;
-    padding: 13px 16px;
-    background: #fff;
-    color: var(--muted);
-    border: 1px solid var(--border);
-    border-radius: 12px;
+.products-note {
     text-align: center;
+    color: var(--muted);
     font-size: 13px;
+    margin-top: 20px;
 }
 
-/* ABOUT SECTION */
+/* =========================
+   8. About Us
+========================= */
 
 .about-card {
-    padding: clamp(25px, 5vw, 50px);
-    text-align: center;
-    background: linear-gradient(135deg, #fff0f3, #fffaf7);
-    border: 1px solid var(--border);
-    border-radius: 25px;
+    background: var(--white);
+    border: 1px solid #f0dce3;
+    border-radius: 24px;
+    padding: 35px;
     box-shadow: var(--shadow);
 }
 
-.about-card > h2 {
+.about-card > h3 {
+    color: var(--primary);
+    font-size: 23px;
+    margin-bottom: 12px;
+}
+
+.about-card > p {
+    color: var(--muted);
     margin-bottom: 30px;
 }
 
 .features-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 25px;
+    gap: 20px;
 }
 
-.feature {
-    padding: 20px 12px;
+.features-grid > div {
+    background: var(--pink-light);
+    border-radius: 18px;
+    padding: 20px 15px;
+    text-align: center;
 }
 
-.feature span {
-    display: grid;
-    place-items: center;
-    width: 64px;
-    height: 64px;
-    margin: 0 auto 15px;
-    border-radius: 50%;
-    background: var(--white);
-    border: 1px solid var(--border);
-    color: var(--rose);
-    font-size: 28px;
+.features-grid span {
+    font-size: 32px;
 }
 
-.feature h3 {
-    color: var(--plum);
-    font-size: 17px;
-    margin-bottom: 8px;
+.features-grid h4 {
+    color: var(--primary);
+    margin: 8px 0;
 }
 
-.feature p {
+.features-grid p {
     color: var(--muted);
     font-size: 13px;
 }
 
-/* CONTACT */
+/* =========================
+   9. Contact Section
+========================= */
 
 .contact-card {
-    padding: 30px 20px;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 35px 25px;
     text-align: center;
     background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border: 1px solid #f0dce3;
+    border-radius: 24px;
     box-shadow: var(--shadow);
 }
 
-.contact-card p:first-child {
+.contact-card > p:first-child {
+    color: var(--primary-dark);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* Phone number */
+
+.contact-number {
+    display: block;
+    direction: ltr;
+    unicode-bidi: isolate;
+    color: var(--primary);
+    font-size: 25px;
     font-weight: 800;
-    color: var(--plum);
-    font-size: 17px;
-    margin-bottom: 8px;
+    text-align: center;
+    margin: 15px 0 25px;
+    letter-spacing: 1px;
 }
 
-.contact-card p:last-child {
-    color: var(--muted);
-    font-size: 14px;
+/* Contact buttons */
+
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
-/* FOOTER */
+.contact-buttons .button {
+    display: inline-block;
+    min-width: 155px;
+    text-align: center;
+}
+
+.whatsapp-button {
+    background: #218c58;
+    color: var(--white);
+}
+
+.whatsapp-button:hover {
+    background: #176b42;
+}
+
+/* =========================
+   10. Footer
+========================= */
 
 footer {
-    padding: 38px 15px;
+    margin-top: 75px;
+    padding: 35px 0;
     text-align: center;
-    color: #fff4f7;
-    background: linear-gradient(135deg, #321d30, #51283f);
+    background: var(--primary-dark);
+    color: var(--white);
 }
 
-footer h2 {
-    font-size: 28px;
+footer h3 {
+    font-size: 24px;
     margin-bottom: 8px;
 }
 
 footer p {
-    color: #e7d5df;
-    font-size: 13px;
-    margin-top: 6px;
+    color: #f7e6ec;
+    font-size: 14px;
+    margin: 5px 0;
 }
 
-/* TABLETS */
+/* =========================
+   11. Tablet Screens
+========================= */
 
-@media (max-width: 800px) {
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .nav-links {
+        justify-content: center;
+        gap: 12px 18px;
+    }
+
+    .hero {
+        min-height: 350px;
+        padding: 40px 25px;
+    }
+
     .category-grid,
     .product-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
     }
 
-    .nav-links {
-        gap: 10px 20px;
+    .features-grid {
+        grid-template-columns: 1fr;
     }
 
-    .section {
-        padding-block: 48px;
-    }
-
-    .product-image {
-        min-height: 135px;
-        font-size: 55px;
+    .about-card {
+        padding: 25px;
     }
 }
 
-/* MOBILE PHONES */
+/* =========================
+   12. Mobile Screens
+========================= */
 
 @media (max-width: 480px) {
-    body {
-        font-size: 14px;
-    }
-
-    .container {
-        width: 92%;
-    }
-
-    header {
-        padding: 20px 0;
-    }
-
     header h1 {
-        font-size: 29px;
+        font-size: 24px;
     }
 
     .nav-links {
-        gap: 8px 15px;
-        padding-block: 12px;
+        gap: 8px 13px;
     }
 
     .nav-links a {
@@ -509,101 +493,56 @@ footer p {
     }
 
     .hero {
-        padding: 55px 15px;
+        padding: 30px 20px;
+        border-radius: 20px;
     }
 
     .hero h2 {
-        font-size: 27px;
+        font-size: 31px;
     }
 
-    .hero p:not(.eyebrow) {
+    .hero-content > p:not(.eyebrow) {
         font-size: 14px;
     }
 
-    .section,
-    .products-section {
-        padding-block: 42px;
+    .section {
+        padding-top: 55px;
     }
 
-    .section-heading {
-        margin-bottom: 25px;
+    .section-heading h2 {
+        font-size: 25px;
     }
 
     .category-grid,
     .product-grid {
-        gap: 13px;
+        grid-template-columns: 1fr;
     }
 
     .category-card {
-        min-height: 155px;
-        padding: 17px 8px;
-        border-radius: 14px;
-    }
-
-    .category-icon {
-        width: 55px;
-        height: 55px;
-        font-size: 27px;
-    }
-
-    .category-card h3 {
-        font-size: 15px;
-    }
-
-    .category-card p {
-        font-size: 11px;
-    }
-
-    .product-card {
-        border-radius: 14px;
+        min-height: 130px;
     }
 
     .product-image {
-        min-height: 110px;
-        margin: 7px 7px 0;
-        font-size: 43px;
+        min-height: 170px;
     }
 
-    .product-info {
-        padding: 13px 10px 15px;
+    .contact-card {
+        padding: 25px 18px;
     }
 
-    .product-info h3 {
-        font-size: 15px;
+    .contact-number {
+        font-size: 22px;
     }
 
-    .product-info > p:not(.price) {
-        font-size: 12px;
-        min-height: 45px;
+    .contact-buttons {
+        flex-direction: column;
     }
 
-    .price {
-        font-size: 16px;
+    .contact-buttons .button {
+        width: 100%;
     }
 
-    .product-info button {
-        padding: 10px 5px;
-        font-size: 12px;
+    footer {
+        margin-top: 50px;
     }
-
-    .features-grid {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-
-    .feature {
-        padding: 15px 8px;
-    }
-
-    .about-card {
-        padding: 25px 15px;
-    }
-}
-
-/* ACCESSIBILITY */
-
-a:focus-visible,
-button:focus-visible {
-    outline: 3px solid var(--gold);
-    outline-offset: 4px;
 }
