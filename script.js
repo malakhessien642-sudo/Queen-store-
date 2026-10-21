@@ -1,232 +1,405 @@
 
+"use strict";
+
+// رقم واتساب المتجر بكود مصر الدولي
 const WHATSAPP_NUMBER = "201115830573";
 
-// Replace these sample prices with your actual product prices.
+// المنتجات والأسعار التجريبية
+// غيّري الأسعار حسب أسعار منتجاتك الحقيقية
 const products = [
-  { id: "m1", category: "makeup", name: "Makeup Collection 01", price: 150, image: "makeup1.jpg" },
-  { id: "m2", category: "makeup", name: "Makeup Collection 02", price: 200, image: "makup2.jpg" },
-  { id: "m3", category: "makeup", name: "Makeup Collection 03", price: 250, image: "makeup3.jpg" },
-
-  { id: "d1", category: "dresses", name: "Elegant Dress 01", price: 650, image: "dresses1.jpg" },
-  { id: "d2", category: "dresses", name: "Elegant Dress 02", price: 750, image: "dresses2.jpg" },
-  { id: "d3", category: "dresses", name: "Elegant Dress 03", price: 850, image: "dressed3.jpg" },
-
-  { id: "a1", category: "accessories", name: "Accessory 01", price: 120, image: "accessories1.webp" },
-  { id: "a2", category: "accessories", name: "Accessory 02", price: 180, image: "accessories2.jpeg" },
-  { id: "a3", category: "accessories", name: "Accessory 03", price: 220, image: "accessories3.jpeg" }
+  {
+    id: 1,
+    category: "makeup",
+    name: "Makeup Product 1",
+    price: 150,
+    image: "./makeup1.jpg"
+  },
+  {
+    id: 2,
+    category: "makeup",
+    name: "Makeup Product 2",
+    price: 200,
+    image: "./makup2.jpg"
+  },
+  {
+    id: 3,
+    category: "makeup",
+    name: "Makeup Product 3",
+    price: 250,
+    image: "./makeup3.jpg"
+  },
+  {
+    id: 4,
+    category: "dresses",
+    name: "Dress 1",
+    price: 650,
+    image: "./dresses1.jpg"
+  },
+  {
+    id: 5,
+    category: "dresses",
+    name: "Dress 2",
+    price: 750,
+    image: "./dresses2.jpg"
+  },
+  {
+    id: 6,
+    category: "dresses",
+    name: "Dress 3",
+    price: 850,
+    image: "./dressed3.jpg"
+  },
+  {
+    id: 7,
+    category: "accessories",
+    name: "Accessory 1",
+    price: 120,
+    image: "./accessories1.webp"
+  },
+  {
+    id: 8,
+    category: "accessories",
+    name: "Accessory 2",
+    price: 180,
+    image: "./accessories2.jpeg"
+  },
+  {
+    id: 9,
+    category: "accessories",
+    name: "Accessory 3",
+    price: 220,
+    image: "./accessories3.jpeg"
+  }
 ];
 
-const categoryDetails = {
+const categoryInfo = {
   makeup: {
-    title: "Makeup",
-    description: "A little beauty, a lot of confidence."
+    title: "قسم المكياج",
+    description: "اختاري مستحضرات المكياج اللي بتحبيها"
   },
   dresses: {
-    title: "Dresses",
-    description: "Find the look that feels like you."
+    title: "قسم الفساتين",
+    description: "اختاري إطلالتك المميزة"
   },
   accessories: {
-    title: "Accessories",
-    description: "The little details make the difference."
+    title: "قسم الإكسسوارات",
+    description: "كمّلي إطلالتك بأجمل الإكسسوارات"
   }
 };
 
+// السلة بتحتفظ بالمنتجات أثناء استخدام الصفحة
 let cart = [];
 
-const productGrid = document.getElementById("product-grid");
-const productsSection = document.getElementById("products-section");
-const categoriesSection = document.getElementById("categories");
-const cartDrawer = document.getElementById("cart-drawer");
-const cartBackdrop = document.getElementById("cart-backdrop");
+// تنسيق السعر بالجنيه المصري
+function formatPrice(price) {
+  return price.toLocaleString("en-US") + " جنيه";
+}
 
-document.getElementById("year").textContent = new Date().getFullYear();
-
+// عرض قسم محدد فقط
 function showCategory(category) {
-  const details = categoryDetails[category];
+  if (!categoryInfo[category]) {
+    return;
+  }
 
-  if (!details) return;
+  const categoriesSection = document.getElementById("categories-section");
+  const productsSection = document.getElementById("products-section");
+  const productsGrid = document.getElementById("products-grid");
+  const productsTitle = document.getElementById("products-title");
+  const productsDescription = document.getElementById("products-description");
 
-  document.getElementById("products-title").innerHTML =
-    details.title + " <i>Collection</i>";
+  if (
+    !categoriesSection ||
+    !productsSection ||
+    !productsGrid ||
+    !productsTitle ||
+    !productsDescription
+  ) {
+    console.error("لم يتم العثور على عناصر عرض المنتجات.");
+    return;
+  }
 
-  document.getElementById("products-description").textContent =
-    details.description;
+  const selectedProducts = products.filter(function(product) {
+    return product.category === category;
+  });
 
-  const selectedProducts = products.filter(
-    product => product.category === category
-  );
+  productsTitle.textContent = categoryInfo[category].title;
+  productsDescription.textContent = categoryInfo[category].description;
 
-  productGrid.innerHTML = selectedProducts.map(product => `
-    <article class="product-card">
-      <div class="product-image-wrap">
-        <img
-          src="${product.image}"
-          alt="${product.name}"
-          loading="lazy"
-          onerror="this.style.display='none'; this.parentElement.style.background='#ead5d8';"
-        >
-      </div>
+  productsGrid.replaceChildren();
 
-      <div class="product-info">
-        <span class="product-category">${category}</span>
-        <h3>${product.name}</h3>
+  selectedProducts.forEach(function(product) {
+    const card = document.createElement("article");
+    card.className = "product-card";
 
-        <div class="product-bottom">
-          <span class="product-price">${product.price} EGP</span>
-          <button
-            class="add-button"
-            onclick="addToCart('${product.id}')"
-          >
-            + Add to Bag
-          </button>
-        </div>
-      </div>
-    </article>
-  `).join("");
+    const image = document.createElement("img");
+    image.src = product.image;
+    image.alt = product.name;
+    image.loading = "lazy";
+
+    image.addEventListener("error", function() {
+      image.alt = "الصورة غير متاحة: " + product.name;
+    });
+
+    const info = document.createElement("div");
+    info.className = "product-info";
+
+    const name = document.createElement("h3");
+    name.textContent = product.name;
+
+    const price = document.createElement("div");
+    price.className = "product-price";
+    price.textContent = formatPrice(product.price);
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "add-button";
+    button.textContent = "＋ أضيفي للسلة";
+
+    button.addEventListener("click", function() {
+      addToCart(product.id);
+    });
+
+    info.append(name, price, button);
+    card.append(image, info);
+    productsGrid.appendChild(card);
+  });
 
   categoriesSection.hidden = true;
   productsSection.hidden = false;
 
-  productsSection.scrollIntoView({ behavior: "smooth" });
-}
-
-function showHome() {
-  productsSection.hidden = true;
-  categoriesSection.hidden = false;
-
-  document.getElementById("home").scrollIntoView({
-    behavior: "smooth"
+  productsSection.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
   });
 }
 
+// الرجوع للأقسام الرئيسية
+function showHome() {
+  document.getElementById("products-section").hidden = true;
+  document.getElementById("categories-section").hidden = false;
+
+  document.getElementById("categories-section").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+// النزول للأقسام من البانر
+function scrollToCategories() {
+  document.getElementById("categories-section").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+// إضافة منتج للسلة
 function addToCart(productId) {
-  const product = products.find(item => item.id === productId);
+  const product = products.find(function(item) {
+    return item.id === productId;
+  });
 
-  if (!product) return;
-
-  const existingItem = cart.find(item => item.id === productId);
-
-  if (existingItem) {
-    existingItem.quantity++;
-  } else {
-    cart.push({ ...product, quantity: 1 });
+  if (!product) {
+    return;
   }
 
-  updateCart();
+  const cartItem = cart.find(function(item) {
+    return item.id === productId;
+  });
+
+  if (cartItem) {
+    cartItem.quantity += 1;
+  } else {
+    cart.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      quantity: 1
+    });
+  }
+
+  renderCart();
   toggleCart(true);
 }
 
-function changeQuantity(productId, change) {
-  const item = cart.find(product => product.id === productId);
+// زيادة أو تقليل الكمية
+function changeQuantity(productId, amount) {
+  const item = cart.find(function(product) {
+    return product.id === productId;
+  });
 
-  if (!item) return;
+  if (!item) {
+    return;
+  }
 
-  item.quantity += change;
+  item.quantity += amount;
 
   if (item.quantity <= 0) {
-    cart = cart.filter(product => product.id !== productId);
+    cart = cart.filter(function(product) {
+      return product.id !== productId;
+    });
   }
 
-  updateCart();
+  renderCart();
 }
 
+// حذف منتج من السلة
 function removeFromCart(productId) {
-  cart = cart.filter(item => item.id !== productId);
-  updateCart();
+  cart = cart.filter(function(item) {
+    return item.id !== productId;
+  });
+
+  renderCart();
 }
 
-function updateCart() {
-  const count = cart.reduce(
-    (total, item) => total + item.quantity, 0
-  );
+// حساب إجمالي عدد القطع
+function getCartCount() {
+  return cart.reduce(function(total, item) {
+    return total + item.quantity;
+  }, 0);
+}
 
-  const total = cart.reduce(
-    (sum, item) => sum + item.price * item.quantity, 0
-  );
+// حساب الإجمالي بالجنيه
+function getCartTotal() {
+  return cart.reduce(function(total, item) {
+    return total + item.price * item.quantity;
+  }, 0);
+}
 
-  document.getElementById("cart-count").textContent = count;
-  document.getElementById("cart-total").textContent =
-    total.toLocaleString("en-US") + " EGP";
-
+// تحديث محتويات السلة
+function renderCart() {
   const cartItems = document.getElementById("cart-items");
+  const cartCount = document.getElementById("cart-count");
+  const cartTotal = document.getElementById("cart-total");
+
+  cartCount.textContent = getCartCount();
+  cartTotal.textContent = formatPrice(getCartTotal());
+  cartItems.replaceChildren();
 
   if (cart.length === 0) {
-    cartItems.innerHTML = `
-      <div class="empty-cart">
-        Your bag is waiting for something lovely ♡
-      </div>
-    `;
+    const emptyMessage = document.createElement("p");
+    emptyMessage.className = "empty-cart";
+    emptyMessage.textContent = "السلة لسه فاضية ♡";
+    cartItems.appendChild(emptyMessage);
     return;
   }
 
-  cartItems.innerHTML = cart.map(item => `
-    <div class="cart-item">
-      <img src="${item.image}" alt="${item.name}">
+  cart.forEach(function(item) {
+    const row = document.createElement("div");
+    row.className = "cart-item";
 
-      <div>
-        <h3>${item.name}</h3>
-        <p>${(item.price * item.quantity).toLocaleString("en-US")} EGP</p>
+    const image = document.createElement("img");
+    image.src = item.image;
+    image.alt = item.name;
 
-        <div class="quantity-controls">
-          <button
-            onclick="changeQuantity('${item.id}', -1)"
-            aria-label="Decrease quantity"
-          >−</button>
+    const details = document.createElement("div");
 
-          <span>${item.quantity}</span>
+    const name = document.createElement("h3");
+    name.textContent = item.name;
 
-          <button
-            onclick="changeQuantity('${item.id}', 1)"
-            aria-label="Increase quantity"
-          >+</button>
-        </div>
-      </div>
+    const price = document.createElement("div");
+    price.className = "cart-item-price";
+    price.textContent = formatPrice(item.price * item.quantity);
 
-      <button
-        class="remove-item"
-        onclick="removeFromCart('${item.id}')"
-        aria-label="Remove ${item.name}"
-      >✕</button>
-    </div>
-  `).join("");
+    const controls = document.createElement("div");
+    controls.className = "cart-item-controls";
+
+    const minusButton = document.createElement("button");
+    minusButton.type = "button";
+    minusButton.className = "quantity-button";
+    minusButton.textContent = "−";
+    minusButton.setAttribute("aria-label", "تقليل الكمية");
+    minusButton.addEventListener("click", function() {
+      changeQuantity(item.id, -1);
+    });
+
+    const quantity = document.createElement("span");
+    quantity.textContent = item.quantity;
+
+    const plusButton = document.createElement("button");
+    plusButton.type = "button";
+    plusButton.className = "quantity-button";
+    plusButton.textContent = "+";
+    plusButton.setAttribute("aria-label", "زيادة الكمية");
+    plusButton.addEventListener("click", function() {
+      changeQuantity(item.id, 1);
+    });
+
+    const removeButton = document.createElement("button");
+    removeButton.type = "button";
+    removeButton.className = "remove-button";
+    removeButton.textContent = "حذف";
+    removeButton.addEventListener("click", function() {
+      removeFromCart(item.id);
+    });
+
+    controls.append(
+      minusButton,
+      quantity,
+      plusButton,
+      removeButton
+    );
+
+    details.append(name, price, controls);
+    row.append(image, details);
+    cartItems.appendChild(row);
+  });
 }
 
+// فتح وإغلاق السلة
 function toggleCart(open) {
-  cartDrawer.classList.toggle("open", open);
-  cartBackdrop.classList.toggle("open", open);
+  const drawer = document.getElementById("cart-drawer");
+  const backdrop = document.getElementById("cart-backdrop");
 
-  document.body.style.overflow = open ? "hidden" : "";
+  if (open) {
+    drawer.classList.add("open");
+    drawer.setAttribute("aria-hidden", "false");
+    backdrop.hidden = false;
+    document.body.classList.add("cart-open");
+  } else {
+    drawer.classList.remove("open");
+    drawer.setAttribute("aria-hidden", "true");
+    backdrop.hidden = true;
+    document.body.classList.remove("cart-open");
+  }
 }
 
+// تجهيز رسالة الطلب وفتح واتساب
 function checkoutWhatsApp() {
   if (cart.length === 0) {
-    alert("Your bag is empty. Please add a product first.");
+    alert("السلة فاضية! اختاري المنتجات الأول ❤️");
     return;
   }
 
-  const lines = cart.map(item =>
-    `• ${item.name} x ${item.quantity} = ${
-      (item.price * item.quantity).toLocaleString("en-US")
-    } EGP`
-  );
+  let message = "مرحبًا Queen Store 👑\n";
+  message += "عايزة أأكد الطلب التالي:\n\n";
 
-  const total = cart.reduce(
-    (sum, item) => sum + item.price * item.quantity, 0
-  );
+  cart.forEach(function(item, index) {
+    message += (index + 1) + "- " + item.name + "\n";
+    message += "الكمية: " + item.quantity + "\n";
+    message += "السعر: " + formatPrice(item.price * item.quantity) + "\n\n";
+  });
 
-  const message = [
-    "Hello Queen Store! ♛",
-    "I'd like to place an order:",
-    "",
-    ...lines,
-    "",
-    `Total: ${total.toLocaleString("en-US")} EGP`,
-    "",
-    "Please confirm availability and delivery details."
-  ].join("\n");
+  message += "الإجمالي: " + formatPrice(getCartTotal()) + "\n";
+  message += "\nمن فضلكم أكدوا لي توافر المنتجات وتفاصيل التوصيل.";
 
   const whatsappURL =
-    `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    "https://wa.me/" +
+    WHATSAPP_NUMBER +
+    "?text=" +
+    encodeURIComponent(message);
 
-  window.open(whatsappURL, "_blank", "noopener,noreferrer");
+  window.open(whatsappURL, "_blank");
 }
+
+// تجهيز الصفحة بعد تحميل HTML
+document.addEventListener("DOMContentLoaded", function() {
+  renderCart();
+
+  // إغلاق السلة بزر Escape
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+      toggleCart(false);
+    }
+  });
+});
