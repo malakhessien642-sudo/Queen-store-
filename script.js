@@ -16,7 +16,7 @@ const products = {
   dresses: [
     { id: "d1", name: "Dress 1", price: 450, image: "dresses1.jpg" },
     { id: "d2", name: "Dress 2", price: 500, image: "dresses2.jpg" },
-    { id: "d3", name: "Dress 3", price: 480, image: "dressed3.jpg" }
+    { id: "d3", name: "Dress 3", price: 480, image: "dresses3.jpg" }
   ]
 };
 
