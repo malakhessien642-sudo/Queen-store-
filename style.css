@@ -1,428 +1,405 @@
 
-:root {
-  --wine: #4b1028;
-  --wine-dark: #2b0817;
-  --gold: #c6a15b;
-  --cream: #fbf7f0;
-  --pink: #ead5d8;
-  --ink: #281820;
-  --muted: #82737a;
+"use strict";
+
+// رقم واتساب المتجر بكود مصر الدولي
+const WHATSAPP_NUMBER = "201115830573";
+
+// المنتجات والأسعار التجريبية
+// غيّري الأسعار حسب أسعار منتجاتك الحقيقية
+const products = [
+  {
+    id: 1,
+    category: "makeup",
+    name: "Makeup Product 1",
+    price: 150,
+    image: "./makeup1.jpg"
+  },
+  {
+    id: 2,
+    category: "makeup",
+    name: "Makeup Product 2",
+    price: 200,
+    image: "./makup2.jpg"
+  },
+  {
+    id: 3,
+    category: "makeup",
+    name: "Makeup Product 3",
+    price: 250,
+    image: "./makeup3.jpg"
+  },
+  {
+    id: 4,
+    category: "dresses",
+    name: "Dress 1",
+    price: 650,
+    image: "./dresses1.jpg"
+  },
+  {
+    id: 5,
+    category: "dresses",
+    name: "Dress 2",
+    price: 750,
+    image: "./dresses2.jpg"
+  },
+  {
+    id: 6,
+    category: "dresses",
+    name: "Dress 3",
+    price: 850,
+    image: "./dressed3.jpg"
+  },
+  {
+    id: 7,
+    category: "accessories",
+    name: "Accessory 1",
+    price: 120,
+    image: "./accessories1.webp"
+  },
+  {
+    id: 8,
+    category: "accessories",
+    name: "Accessory 2",
+    price: 180,
+    image: "./accessories2.jpeg"
+  },
+  {
+    id: 9,
+    category: "accessories",
+    name: "Accessory 3",
+    price: 220,
+    image: "./accessories3.jpeg"
+  }
+];
+
+const categoryInfo = {
+  makeup: {
+    title: "قسم المكياج",
+    description: "اختاري مستحضرات المكياج اللي بتحبيها"
+  },
+  dresses: {
+    title: "قسم الفساتين",
+    description: "اختاري إطلالتك المميزة"
+  },
+  accessories: {
+    title: "قسم الإكسسوارات",
+    description: "كمّلي إطلالتك بأجمل الإكسسوارات"
+  }
+};
+
+// السلة بتحتفظ بالمنتجات أثناء استخدام الصفحة
+let cart = [];
+
+// تنسيق السعر بالجنيه المصري
+function formatPrice(price) {
+  return price.toLocaleString("en-US") + " جنيه";
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+// عرض قسم محدد فقط
+function showCategory(category) {
+  if (!categoryInfo[category]) {
+    return;
+  }
+
+  const categoriesSection = document.getElementById("categories-section");
+  const productsSection = document.getElementById("products-section");
+  const productsGrid = document.getElementById("products-grid");
+  const productsTitle = document.getElementById("products-title");
+  const productsDescription = document.getElementById("products-description");
+
+  if (
+    !categoriesSection ||
+    !productsSection ||
+    !productsGrid ||
+    !productsTitle ||
+    !productsDescription
+  ) {
+    console.error("لم يتم العثور على عناصر عرض المنتجات.");
+    return;
+  }
+
+  const selectedProducts = products.filter(function(product) {
+    return product.category === category;
+  });
+
+  productsTitle.textContent = categoryInfo[category].title;
+  productsDescription.textContent = categoryInfo[category].description;
+
+  productsGrid.replaceChildren();
+
+  selectedProducts.forEach(function(product) {
+    const card = document.createElement("article");
+    card.className = "product-card";
+
+    const image = document.createElement("img");
+    image.src = product.image;
+    image.alt = product.name;
+    image.loading = "lazy";
+
+    image.addEventListener("error", function() {
+      image.alt = "الصورة غير متاحة: " + product.name;
+    });
+
+    const info = document.createElement("div");
+    info.className = "product-info";
+
+    const name = document.createElement("h3");
+    name.textContent = product.name;
+
+    const price = document.createElement("div");
+    price.className = "product-price";
+    price.textContent = formatPrice(product.price);
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "add-button";
+    button.textContent = "＋ أضيفي للسلة";
+
+    button.addEventListener("click", function() {
+      addToCart(product.id);
+    });
+
+    info.append(name, price, button);
+    card.append(image, info);
+    productsGrid.appendChild(card);
+  });
+
+  categoriesSection.hidden = true;
+  productsSection.hidden = false;
+
+  productsSection.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
 }
 
-html { scroll-behavior: smooth; }
-body {
-  background: var(--cream);
-  color: var(--ink);
-  font-family: "Poppins", sans-serif;
-}
-button, a { font: inherit; }
-button { cursor: pointer; }
-a { color: inherit; text-decoration: none; }
-[hidden] { display: none !important; }
+// الرجوع للأقسام الرئيسية
+function showHome() {
+  document.getElementById("products-section").hidden = true;
+  document.getElementById("categories-section").hidden = false;
 
-.navbar {
-  min-height: 78px;
-  padding: 14px 7%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  background: var(--wine-dark);
-  color: white;
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  box-shadow: 0 5px 22px #21071122;
+  document.getElementById("categories-section").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 17px;
-  font-weight: 500;
-  letter-spacing: 2px;
-}
-.brand b { color: var(--gold); font-weight: 600; }
-.brand-crown { color: var(--gold); font-size: 30px; }
-
-.navbar nav { display: flex; align-items: center; gap: 25px; }
-.navbar nav a {
-  color: #f8eaf0;
-  font-size: 12px;
-  transition: color .2s;
-}
-.navbar nav a:hover { color: var(--gold); }
-
-.cart-button {
-  border: 1px solid var(--gold);
-  border-radius: 30px;
-  padding: 10px 15px;
-  color: white;
-  background: transparent;
-  font-size: 12px;
-}
-.cart-button span {
-  display: inline-grid;
-  place-items: center;
-  margin-left: 7px;
-  background: var(--gold);
-  color: var(--wine-dark);
-  border-radius: 50%;
-  width: 22px;
-  height: 22px;
-  font-weight: 700;
+// النزول للأقسام من البانر
+function scrollToCategories() {
+  document.getElementById("categories-section").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
 }
 
-.hero {
-  height: min(650px, 78vh);
-  min-height: 470px;
-  position: relative;
-  overflow: hidden;
-  display: grid;
-  place-items: center;
-  background: var(--wine-dark);
-  color: white;
-  text-align: center;
-}
-.hero-img, .hero-overlay { position: absolute; inset: 0; width: 100%; height: 100%; }
-.hero-img { object-fit: cover; object-position: center; }
-.hero-overlay {
-  background: linear-gradient(90deg, #240713bb, #3d1027a8, #240713a6);
-}
-.hero-content { position: relative; z-index: 1; padding: 30px 16px; }
-.hero-kicker { font-size: 10px; letter-spacing: 4px; color: #f1d8ac; }
-.hero-crown {
-  color: var(--gold);
-  font-size: clamp(48px, 7vw, 72px);
-  line-height: 1.35;
-  text-shadow: 0 0 25px #c6a15b44;
-}
-.hero h1 {
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(45px, 9vw, 94px);
-  font-weight: 600;
-  letter-spacing: clamp(3px, 1.5vw, 12px);
-  line-height: 1.05;
-  text-shadow: 0 3px 20px #0005;
-}
-.hero h1 span { color: #e8c988; }
-.gold-line { width: 100px; height: 2px; background: var(--gold); margin: 25px auto 20px; }
-.hero-content p { font-size: 14px; letter-spacing: 1px; color: #f7e9ec; }
-.primary-button {
-  margin-top: 32px;
-  border: 1px solid var(--gold);
-  background: var(--gold);
-  color: var(--wine-dark);
-  padding: 15px 23px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  transition: .25s;
-}
-.primary-button:hover { background: #f1d8ac; transform: translateY(-2px); }
-.primary-button span { margin-left: 12px; font-size: 16px; }
-.hero-number {
-  position: absolute;
-  bottom: 22px;
-  right: 7%;
-  font-size: 9px;
-  letter-spacing: 2px;
-  color: #fff9;
+// إضافة منتج للسلة
+function addToCart(productId) {
+  const product = products.find(function(item) {
+    return item.id === productId;
+  });
+
+  if (!product) {
+    return;
+  }
+
+  const cartItem = cart.find(function(item) {
+    return item.id === productId;
+  });
+
+  if (cartItem) {
+    cartItem.quantity += 1;
+  } else {
+    cart.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      quantity: 1
+    });
+  }
+
+  renderCart();
+  toggleCart(true);
 }
 
-.section { padding: 85px 7%; }
-.section-heading { text-align: center; margin-bottom: 38px; }
-.eyebrow {
-  color: #a27a43;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 3px;
-}
-.section-heading h2, .footer h2 {
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(34px, 5vw, 50px);
-  font-weight: 600;
-  margin: 8px 0;
-}
-.section-heading h2 i, .footer h2 i { color: #9d5c70; font-weight: 500; }
-.section-heading p { color: var(--muted); font-size: 12px; }
+// زيادة أو تقليل الكمية
+function changeQuantity(productId, amount) {
+  const item = cart.find(function(product) {
+    return product.id === productId;
+  });
 
-.category-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
-}
-.category-card {
-  border: 0;
-  padding: 0;
-  height: 380px;
-  position: relative;
-  overflow: hidden;
-  background: var(--pink);
-  text-align: left;
-  color: white;
-  isolation: isolate;
-}
-.category-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .6s;
-}
-.category-card:hover img { transform: scale(1.06); }
-.category-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, #250813e8 0%, #25081333 55%, transparent 100%);
-}
-.category-info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 26px 23px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.category-info small { font-size: 9px; letter-spacing: 2px; color: #efd6a5; }
-.category-info strong {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 34px;
-  margin: 4px 0 15px;
-}
-.category-link {
-  border-top: 1px solid #c6a15b99;
-  padding-top: 12px;
-  width: 100%;
-  font-size: 9px;
-  letter-spacing: 1.2px;
+  if (!item) {
+    return;
+  }
+
+  item.quantity += amount;
+
+  if (item.quantity <= 0) {
+    cart = cart.filter(function(product) {
+      return product.id !== productId;
+    });
+  }
+
+  renderCart();
 }
 
-.products-section { background: #f5ece8; min-height: 420px; }
-.back-button {
-  border: 0;
-  background: transparent;
-  color: var(--wine);
-  font-size: 12px;
-  margin-bottom: 28px;
-  padding: 8px 0;
-}
-.back-button:hover { color: #a15a74; }
+// حذف منتج من السلة
+function removeFromCart(productId) {
+  cart = cart.filter(function(item) {
+    return item.id !== productId;
+  });
 
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
-}
-.product-card {
-  background: #fffdf9;
-  border: 1px solid #e9ded9;
-  padding: 12px;
-  transition: transform .25s, box-shadow .25s;
-}
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 14px 35px #4b102815;
-}
-.product-image-wrap {
-  height: 260px;
-  background: #f4e9e7;
-  overflow: hidden;
-  position: relative;
-}
-.product-image-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  mix-blend-mode: multiply;
-}
-.product-info { padding: 17px 5px 5px; }
-.product-category {
-  color: #a27a43;
-  font-size: 9px;
-  letter-spacing: 1.7px;
-  text-transform: uppercase;
-}
-.product-info h3 { font-size: 14px; font-weight: 500; margin: 7px 0 10px; }
-.product-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-}
-.product-price { color: var(--wine); font-weight: 700; font-size: 14px; }
-.add-button {
-  background: var(--wine);
-  color: white;
-  border: 1px solid var(--wine);
-  padding: 11px 13px;
-  font-size: 10px;
-  transition: .2s;
-}
-.add-button:hover { background: var(--gold); border-color: var(--gold); color: var(--wine-dark); }
-
-.promise-strip {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  padding: 35px 7%;
-  background: #eee0df;
-  text-align: center;
-}
-.promise-strip div { display: flex; flex-direction: column; gap: 5px; }
-.promise-strip div > span { font-size: 25px; color: #a27a43; }
-.promise-strip strong { font-family: "Cormorant Garamond", serif; font-size: 20px; }
-.promise-strip small { font-size: 10px; color: var(--muted); }
-
-.footer {
-  background: var(--wine-dark);
-  color: white;
-  text-align: center;
-  padding: 55px 7% 0;
-}
-.footer-crown { color: var(--gold); font-size: 39px; }
-.footer h2 { font-size: clamp(30px, 5vw, 43px); margin: 10px 0; }
-.footer p { font-size: 12px; color: #ddcbd1; margin-bottom: 24px; }
-.whatsapp-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background: #218c58;
-  color: white;
-  padding: 14px 22px;
-  font-size: 12px;
-  font-weight: 600;
-  border-radius: 3px;
-  transition: background .2s;
-}
-.whatsapp-button:hover { background: #176c43; }
-.whatsapp-button span { font-size: 19px; }
-.footer-bottom {
-  margin-top: 48px;
-  padding: 20px 0;
-  border-top: 1px solid #ffffff22;
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  flex-wrap: wrap;
-  font-size: 9px;
-  letter-spacing: 1px;
-  color: #d7bdc7;
+  renderCart();
 }
 
-.cart-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 29;
-  background: #17060dcc;
-  opacity: 0;
-  visibility: hidden;
-  transition: .25s;
-}
-.cart-backdrop.open { opacity: 1; visibility: visible; }
-.cart-drawer {
-  position: fixed;
-  z-index: 30;
-  top: 0;
-  right: 0;
-  width: min(430px, 100%);
-  height: 100dvh;
-  background: var(--cream);
-  display: flex;
-  flex-direction: column;
-  transform: translateX(105%);
-  transition: transform .3s ease;
-  box-shadow: -15px 0 40px #0002;
-}
-.cart-drawer.open { transform: translateX(0); }
-.cart-header {
-  padding: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--wine-dark);
-  color: white;
-}
-.cart-header small { font-size: 9px; letter-spacing: 2px; color: var(--gold); }
-.cart-header h2 { font-family: "Cormorant Garamond", serif; font-size: 30px; }
-.close-cart { background: none; color: white; border: 0; font-size: 32px; }
-.cart-items { padding: 18px; flex: 1; overflow-y: auto; }
-.empty-cart { color: var(--muted); text-align: center; padding: 55px 10px; font-size: 13px; }
-.cart-item {
-  display: grid;
-  grid-template-columns: 75px 1fr auto;
-  gap: 12px;
-  align-items: center;
-  border-bottom: 1px solid #e8dcd7;
-  padding: 14px 0;
-}
-.cart-item img { width: 75px; height: 85px; object-fit: contain; background: #f1e4e1; }
-.cart-item h3 { font-size: 12px; font-weight: 600; }
-.cart-item p { color: var(--wine); font-size: 12px; margin: 6px 0; font-weight: 600; }
-.quantity-controls { display: flex; align-items: center; gap: 12px; }
-.quantity-controls button, .remove-item {
-  border: 1px solid #dfc9c9;
-  background: white;
-  color: var(--wine);
-  min-width: 25px;
-  min-height: 25px;
-}
-.remove-item { align-self: start; border: 0; background: transparent; color: #9b6878; }
-.cart-footer { padding: 22px; border-top: 1px solid #e8dcd7; }
-.cart-total { display: flex; justify-content: space-between; font-size: 14px; }
-.cart-total strong { color: var(--wine); font-size: 18px; }
-.cart-footer p { font-size: 10px; color: var(--muted); margin: 10px 0 17px; }
-.checkout-button, .continue-button { width: 100%; padding: 14px; font-size: 11px; }
-.checkout-button { background: #218c58; border: 0; color: white; font-weight: 700; }
-.continue-button { background: transparent; border: 0; color: var(--wine); margin-top: 8px; }
-
-@media (max-width: 760px) {
-  .navbar { padding: 12px 5%; min-height: 68px; }
-  .brand { font-size: 13px; gap: 6px; letter-spacing: 1px; }
-  .brand-crown { font-size: 24px; }
-  .navbar nav { gap: 12px; }
-  .navbar nav a { font-size: 10px; }
-  .cart-button { padding: 7px 9px; font-size: 10px; }
-  .hero { min-height: 500px; height: 70vh; }
-  .hero-kicker { letter-spacing: 2px; font-size: 8px; }
-  .hero h1 { letter-spacing: 3px; }
-  .section { padding: 60px 5%; }
-  .category-grid { gap: 12px; }
-  .category-card { height: 280px; }
-  .category-info { padding: 15px 10px; }
-  .category-info strong { font-size: 25px; }
-  .category-info small { font-size: 7px; letter-spacing: 1px; }
-  .category-link { font-size: 7px; letter-spacing: .4px; }
-  .product-grid { gap: 12px; }
-  .product-image-wrap { height: 190px; }
-  .product-card { padding: 8px; }
-  .product-info h3 { font-size: 12px; }
-  .product-price { font-size: 12px; }
-  .add-button { padding: 9px 8px; font-size: 9px; }
-  .promise-strip { padding: 25px 4%; gap: 8px; }
-  .promise-strip strong { font-size: 16px; }
-  .promise-strip small { font-size: 9px; }
+// حساب إجمالي عدد القطع
+function getCartCount() {
+  return cart.reduce(function(total, item) {
+    return total + item.quantity;
+  }, 0);
 }
 
-@media (max-width: 430px) {
-  .navbar nav { gap: 8px; }
-  .navbar nav a:first-child { display: none; }
-  .category-grid { grid-template-columns: 1fr; }
-  .category-card { height: 300px; }
-  .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .product-image-wrap { height: 175px; }
-  .product-bottom { align-items: flex-start; flex-direction: column; }
-  .add-button { width: 100%; }
-  .promise-strip { grid-template-columns: 1fr; gap: 24px; }
-  .footer-bottom { flex-direction: column; align-items: center; }
+// حساب الإجمالي بالجنيه
+function getCartTotal() {
+  return cart.reduce(function(total, item) {
+    return total + item.price * item.quantity;
+  }, 0);
 }
+
+// تحديث محتويات السلة
+function renderCart() {
+  const cartItems = document.getElementById("cart-items");
+  const cartCount = document.getElementById("cart-count");
+  const cartTotal = document.getElementById("cart-total");
+
+  cartCount.textContent = getCartCount();
+  cartTotal.textContent = formatPrice(getCartTotal());
+  cartItems.replaceChildren();
+
+  if (cart.length === 0) {
+    const emptyMessage = document.createElement("p");
+    emptyMessage.className = "empty-cart";
+    emptyMessage.textContent = "السلة لسه فاضية ♡";
+    cartItems.appendChild(emptyMessage);
+    return;
+  }
+
+  cart.forEach(function(item) {
+    const row = document.createElement("div");
+    row.className = "cart-item";
+
+    const image = document.createElement("img");
+    image.src = item.image;
+    image.alt = item.name;
+
+    const details = document.createElement("div");
+
+    const name = document.createElement("h3");
+    name.textContent = item.name;
+
+    const price = document.createElement("div");
+    price.className = "cart-item-price";
+    price.textContent = formatPrice(item.price * item.quantity);
+
+    const controls = document.createElement("div");
+    controls.className = "cart-item-controls";
+
+    const minusButton = document.createElement("button");
+    minusButton.type = "button";
+    minusButton.className = "quantity-button";
+    minusButton.textContent = "−";
+    minusButton.setAttribute("aria-label", "تقليل الكمية");
+    minusButton.addEventListener("click", function() {
+      changeQuantity(item.id, -1);
+    });
+
+    const quantity = document.createElement("span");
+    quantity.textContent = item.quantity;
+
+    const plusButton = document.createElement("button");
+    plusButton.type = "button";
+    plusButton.className = "quantity-button";
+    plusButton.textContent = "+";
+    plusButton.setAttribute("aria-label", "زيادة الكمية");
+    plusButton.addEventListener("click", function() {
+      changeQuantity(item.id, 1);
+    });
+
+    const removeButton = document.createElement("button");
+    removeButton.type = "button";
+    removeButton.className = "remove-button";
+    removeButton.textContent = "حذف";
+    removeButton.addEventListener("click", function() {
+      removeFromCart(item.id);
+    });
+
+    controls.append(
+      minusButton,
+      quantity,
+      plusButton,
+      removeButton
+    );
+
+    details.append(name, price, controls);
+    row.append(image, details);
+    cartItems.appendChild(row);
+  });
+}
+
+// فتح وإغلاق السلة
+function toggleCart(open) {
+  const drawer = document.getElementById("cart-drawer");
+  const backdrop = document.getElementById("cart-backdrop");
+
+  if (open) {
+    drawer.classList.add("open");
+    drawer.setAttribute("aria-hidden", "false");
+    backdrop.hidden = false;
+    document.body.classList.add("cart-open");
+  } else {
+    drawer.classList.remove("open");
+    drawer.setAttribute("aria-hidden", "true");
+    backdrop.hidden = true;
+    document.body.classList.remove("cart-open");
+  }
+}
+
+// تجهيز رسالة الطلب وفتح واتساب
+function checkoutWhatsApp() {
+  if (cart.length === 0) {
+    alert("السلة فاضية! اختاري المنتجات الأول ❤️");
+    return;
+  }
+
+  let message = "مرحبًا Queen Store 👑\n";
+  message += "عايزة أأكد الطلب التالي:\n\n";
+
+  cart.forEach(function(item, index) {
+    message += (index + 1) + "- " + item.name + "\n";
+    message += "الكمية: " + item.quantity + "\n";
+    message += "السعر: " + formatPrice(item.price * item.quantity) + "\n\n";
+  });
+
+  message += "الإجمالي: " + formatPrice(getCartTotal()) + "\n";
+  message += "\nمن فضلكم أكدوا لي توافر المنتجات وتفاصيل التوصيل.";
+
+  const whatsappURL =
+    "https://wa.me/" +
+    WHATSAPP_NUMBER +
+    "?text=" +
+    encodeURIComponent(message);
+
+  window.open(whatsappURL, "_blank");
+}
+
+// تجهيز الصفحة بعد تحميل HTML
+document.addEventListener("DOMContentLoaded", function() {
+  renderCart();
+
+  // إغلاق السلة بزر Escape
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+      toggleCart(false);
+    }
+  });
+});
