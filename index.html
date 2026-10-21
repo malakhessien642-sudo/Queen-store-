@@ -4,306 +4,141 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#4b172c">
-  <title>Queen Store | Your Style, Your Crown</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#4b1028">
+  <title>♛ Queen Store | Your Royal Style</title>
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-  <div class="top-bar">A LITTLE LUXURY, JUST FOR YOU ✨</div>
 
-  <header class="header" id="home">
-    <a href="#home" class="logo">
-      <span class="crown">♛</span>
-      <span>QUEEN <small>STORE</small></span>
-    </a>
+<header class="navbar">
+  <a href="#" class="brand" onclick="showHome(); return false;">
+    <span class="brand-crown">♛</span>
+    <span>QUEEN <b>STORE</b></span>
+  </a>
 
-    <nav class="nav">
-      <a href="#home">Home</a>
-      <a href="#makeup">Makeup 💄</a>
-      <a href="#dresses">Dresses 👗</a>
-      <a href="#accessories">Accessories ✨</a>
-    </nav>
-
-    <button class="cart-button" id="open-cart" type="button">
-      <span>🛍</span> My Bag
-      <span class="cart-count" id="cart-count">0</span>
+  <nav>
+    <a href="#" onclick="showHome(); return false;">Home</a>
+    <a href="#categories">Collections</a>
+    <button class="cart-button" onclick="toggleCart(true)">
+      Bag <span id="cart-count">0</span>
     </button>
-  </header>
+  </nav>
+</header>
 
-  <main>
-    <section class="hero">
-      <img class="hero-image" src="pannar.jpg" alt="Queen Store collection">
-      <div class="hero-shade"></div>
+<main>
+  <section class="hero" id="home">
+    <img src="pannar.jpg" alt="Queen Store collection" class="hero-img">
+    <div class="hero-overlay"></div>
 
-      <div class="hero-content">
-        <p class="hero-label">WELCOME TO QUEEN STORE</p>
-        <h1>Your Style.<br><span>Your Crown.</span></h1>
-        <p>Discover the little things that make you feel extraordinary.</p>
-        <a href="#collections" class="main-button">EXPLORE THE COLLECTION <span>↗</span></a>
-      </div>
+    <div class="hero-content">
+      <span class="hero-kicker">A LITTLE LUXURY, JUST FOR YOU</span>
+      <div class="hero-crown">♛</div>
+      <h1>QUEEN <span>STORE</span></h1>
+      <div class="gold-line"></div>
+      <p>Your beauty. Your elegance. Your crown.</p>
+      <button class="primary-button" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'})">
+        EXPLORE COLLECTIONS <span>→</span>
+      </button>
+    </div>
+    <span class="hero-number">01 / QUEEN COLLECTION</span>
+  </section>
 
-      <div class="hero-stamp">MADE FOR YOU<br><span>♡</span></div>
-    </section>
+  <section class="categories section" id="categories">
+    <div class="section-heading">
+      <span class="eyebrow">FIND YOUR FAVOURITE</span>
+      <h2>Shop by <i>Collection</i></h2>
+      <p>Every queen deserves something special.</p>
+    </div>
 
-    <section class="collection-intro" id="collections">
-      <p class="section-label">THE QUEEN EDIT</p>
-      <h2>Find Your <span>Favorite</span></h2>
-      <p>Three collections. Endless ways to express yourself.</p>
-    </section>
-
-    <section class="category-grid">
-      <a href="#makeup" class="category-card">
+    <div class="category-grid">
+      <button class="category-card" onclick="showCategory('makeup')">
         <img src="makups.jpeg" alt="Makeup collection">
         <span class="category-overlay"></span>
-        <span class="category-copy">
-          <span class="category-name">Makeup 💄</span>
-          <span>Beauty begins with you</span>
-          <b>SHOP MAKEUP ↗</b>
+        <span class="category-info">
+          <small>BEAUTY & GLOW</small>
+          <strong>Makeup 💄</strong>
+          <span class="category-link">EXPLORE COLLECTION ↗</span>
         </span>
-      </a>
+      </button>
 
-      <a href="#dresses" class="category-card">
+      <button class="category-card" onclick="showCategory('dresses')">
         <img src="dresses.png" alt="Dresses collection">
         <span class="category-overlay"></span>
-        <span class="category-copy">
-          <span class="category-name">Dresses 👗</span>
-          <span>Dress your way</span>
-          <b>SHOP DRESSES ↗</b>
+        <span class="category-info">
+          <small>YOUR SIGNATURE LOOK</small>
+          <strong>Dresses 👗</strong>
+          <span class="category-link">EXPLORE COLLECTION ↗</span>
         </span>
-      </a>
+      </button>
 
-      <a href="#accessories" class="category-card">
+      <button class="category-card" onclick="showCategory('accessories')">
         <img src="accessories.png" alt="Accessories collection">
         <span class="category-overlay"></span>
-        <span class="category-copy">
-          <span class="category-name">Accessories ✨</span>
-          <span>It's all in the details</span>
-          <b>SHOP ACCESSORIES ↗</b>
+        <span class="category-info">
+          <small>THE PERFECT FINISH</small>
+          <strong>Accessories ✨</strong>
+          <span class="category-link">EXPLORE COLLECTION ↗</span>
         </span>
-      </a>
-    </section>
-
-    <section class="shop-section" id="makeup">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">BEAUTY ESSENTIALS</p>
-          <h2>Makeup <span>💄</span></h2>
-          <p>Little touches. Lovely confidence.</p>
-        </div>
-        <span class="section-number">01 / 03</span>
-      </div>
-
-      <div class="product-grid">
-        <article class="product-card">
-          <div class="product-photo">
-            <img src="makeup1.jpg" alt="Makeup product 1" loading="lazy">
-            <span class="product-badge">QUEEN'S PICK</span>
-          </div>
-          <div class="product-details">
-            <p class="product-category">MAKEUP COLLECTION</p>
-            <h3>Beauty Essential 01</h3>
-            <div class="product-buy">
-              <span class="product-price">EGP <b>150</b></span>
-              <button class="add-button" data-id="makeup1" type="button">+ Add to Bag</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <div class="product-photo">
-            <img src="makup2.jpg" alt="Makeup product 2" loading="lazy">
-          </div>
-          <div class="product-details">
-            <p class="product-category">MAKEUP COLLECTION</p>
-            <h3>Beauty Essential 02</h3>
-            <div class="product-buy">
-              <span class="product-price">EGP <b>200</b></span>
-              <button class="add-button" data-id="makeup2" type="button">+ Add to Bag</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <div class="product-photo">
-            <img src="makeup3.jpg" alt="Makeup product 3" loading="lazy">
-          </div>
-          <div class="product-details">
-            <p class="product-category">MAKEUP COLLECTION</p>
-            <h3>Beauty Essential 03</h3>
-            <div class="product-buy">
-              <span class="product-price">EGP <b>250</b></span>
-              <button class="add-button" data-id="makeup3" type="button">+ Add to Bag</button>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="shop-section soft-section" id="dresses">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">YOUR NEXT FAVORITE LOOK</p>
-          <h2>Dresses <span>👗</span></h2>
-          <p>Find the look that feels like you.</p>
-        </div>
-        <span class="section-number">02 / 03</span>
-      </div>
-
-      <div class="product-grid">
-        <article class="product-card">
-          <div class="product-photo">
-            <img src="dresses1.jpg" alt="Dress 1" loading="lazy">
-            <span class="product-badge">QUEEN'S PICK</span>
-          </div>
-          <div class="product-details">
-            <p class="product-category">DRESSES COLLECTION</p>
-            <h3>Elegant Dress 01</h3>
-            <div class="product-buy">
-              <span class="product-price">EGP <b>650</b></span>
-              <button class="add-button" data-id="dress1" type="button">+ Add to Bag</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <div class="product-photo">
-            <img src="dresses2.jpg" alt="Dress 2" loading="lazy">
-          </div>
-          <div class="product-details">
-            <p class="product-category">DRESSES COLLECTION</p>
-            <h3>Elegant Dress 02</h3>
-            <div class="product-buy">
-              <span class="product-price">EGP <b>750</b></span>
-              <button class="add-button" data-id="dress2" type="button">+ Add to Bag</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <div class="product-photo">
-            <img src="dressed3.jpg" alt="Dress 3" loading="lazy">
-          </div>
-          <div class="product-details">
-            <p class="product-category">DRESSES COLLECTION</p>
-            <h3>Elegant Dress 03</h3>
-            <div class="product-buy">
-              <span class="product-price">EGP <b>850</b></span>
-              <button class="add-button" data-id="dress3" type="button">+ Add to Bag</button>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="shop-section" id="accessories">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">THE PERFECT FINISH</p>
-          <h2>Accessories <span>✨</span></h2>
-          <p>Small details, unforgettable style.</p>
-        </div>
-        <span class="section-number">03 / 03</span>
-      </div>
-
-      <div class="product-grid">
-        <article class="product-card">
-          <div class="product-photo">
-            <img src="accessories1.webp" alt="Accessory 1" loading="lazy">
-            <span class="product-badge">QUEEN'S PICK</span>
-          </div>
-          <div class="product-details">
-            <p class="product-category">ACCESSORIES COLLECTION</p>
-            <h3>Charming Detail 01</h3>
-            <div class="product-buy">
-              <span class="product-price">EGP <b>120</b></span>
-              <button class="add-button" data-id="accessory1" type="button">+ Add to Bag</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <div class="product-photo">
-            <img src="accessories2.jpeg" alt="Accessory 2" loading="lazy">
-          </div>
-          <div class="product-details">
-            <p class="product-category">ACCESSORIES COLLECTION</p>
-            <h3>Charming Detail 02</h3>
-            <div class="product-buy">
-              <span class="product-price">EGP <b>180</b></span>
-              <button class="add-button" data-id="accessory2" type="button">+ Add to Bag</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card">
-          <div class="product-photo">
-            <img src="accessories3.jpeg" alt="Accessory 3" loading="lazy">
-          </div>
-          <div class="product-details">
-            <p class="product-category">ACCESSORIES COLLECTION</p>
-            <h3>Charming Detail 03</h3>
-            <div class="product-buy">
-              <span class="product-price">EGP <b>220</b></span>
-              <button class="add-button" data-id="accessory3" type="button">+ Add to Bag</button>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="closing-banner">
-      <p class="section-label">A LITTLE SOMETHING SPECIAL</p>
-      <h2>Because every Queen<br>deserves a little <span>✨ luxury.</span></h2>
-      <a href="https://wa.me/201115830573" target="_blank" rel="noopener" class="main-button">CONTACT US ON WHATSAPP ↗</a>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <a href="#home" class="logo footer-logo">
-      <span class="crown">♛</span>
-      <span>QUEEN <small>STORE</small></span>
-    </a>
-    <p>Your style, your crown.</p>
-    <a href="https://wa.me/201115830573" target="_blank" rel="noopener">WhatsApp Us ↗</a>
-    <small>© 2026 Queen Store. All rights reserved.</small>
-  </footer>
-
-  <div class="cart-backdrop" id="cart-backdrop"></div>
-
-  <aside class="cart-drawer" id="cart-drawer" aria-hidden="true" aria-label="Shopping cart">
-    <div class="cart-header">
-      <div>
-        <p class="section-label">YOUR FAVORITES</p>
-        <h2>My Shopping Bag</h2>
-      </div>
-      <button class="close-cart" id="close-cart" type="button" aria-label="Close cart">×</button>
+      </button>
     </div>
+  </section>
 
-    <div class="cart-items" id="cart-items">
-      <div class="empty-cart">
-        <span>🛍</span>
-        <h3>Your bag is waiting</h3>
-        <p>Add something lovely to get started.</p>
-      </div>
+  <section class="products-section section" id="products-section" hidden>
+    <button class="back-button" onclick="showHome()">← Back to collections</button>
+    <div class="section-heading">
+      <span class="eyebrow">CURATED JUST FOR YOU</span>
+      <h2 id="products-title">Our <i>Collection</i></h2>
+      <p id="products-description">Discover your next favourite.</p>
     </div>
+    <div class="product-grid" id="product-grid"></div>
+  </section>
 
-    <div class="cart-footer">
-      <div class="cart-total-row">
-        <span>Subtotal</span>
-        <strong id="cart-total">EGP 0</strong>
-      </div>
-      <p class="cart-note">Delivery fees, if any, are calculated separately.</p>
-      <button class="checkout-button" id="checkout-button" type="button">ORDER VIA WHATSAPP ↗</button>
-      <button class="continue-button" id="continue-shopping" type="button">Continue Shopping</button>
+  <section class="promise-strip">
+    <div><span>♛</span><strong>Made for Queens</strong><small>Your style, your rules</small></div>
+    <div><span>♡</span><strong>Picked with Love</strong><small>Details that matter</small></div>
+    <div><span>✧</span><strong>Easy Ordering</strong><small>Order directly on WhatsApp</small></div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-crown">♛</div>
+  <h2>Every Queen Has Her <i>Style</i></h2>
+  <p>Find your favourites and let us help you order them.</p>
+  <a class="whatsapp-button" href="https://wa.me/201115830573" target="_blank" rel="noopener">
+    <span>☏</span> Chat with us on WhatsApp
+  </a>
+  <div class="footer-bottom">
+    <span>♛ QUEEN STORE</span>
+    <span>Elegance in every detail.</span>
+    <span>© <span id="year"></span> Queen Store</span>
+  </div>
+</footer>
+
+<div class="cart-backdrop" id="cart-backdrop" onclick="toggleCart(false)"></div>
+
+<aside class="cart-drawer" id="cart-drawer" aria-label="Shopping bag">
+  <div class="cart-header">
+    <div>
+      <small>YOUR SELECTION</small>
+      <h2>Shopping Bag</h2>
     </div>
-  </aside>
+    <button class="close-cart" onclick="toggleCart(false)" aria-label="Close bag">×</button>
+  </div>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="cart-items" id="cart-items">
+    <div class="empty-cart">Your bag is waiting for something lovely ♡</div>
+  </div>
+
+  <div class="cart-footer">
+    <div class="cart-total"><span>Subtotal</span><strong id="cart-total">0 EGP</strong></div>
+    <p>Delivery fees can be confirmed on WhatsApp.</p>
+    <button class="checkout-button" onclick="checkoutWhatsApp()">ORDER VIA WHATSAPP ↗</button>
+    <button class="continue-button" onclick="toggleCart(false)">Continue shopping</button>
+  </div>
+</aside>
+
+<script src="script.js"></script>
 </body>
 </html>
