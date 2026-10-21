@@ -2,327 +2,275 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Queen Store | كوين ستور</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#581c32">
+  <meta name="description" content="Queen Store - Makeup, Dresses and Accessories">
+  <title>Queen Store | Your Royal Touch</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <!-- Header -->
-    <header class="header">
-        <a href="#home" class="logo">♛ Queen Store</a>
+  <div class="announcement">
+    A LITTLE LUXURY, JUST FOR YOU ✨
+  </div>
 
-        <nav class="navbar">
-            <a href="#home">الرئيسية</a>
-            <a href="#categories">الأقسام</a>
-            <a href="#products">المنتجات</a>
-            <a href="#about">من نحن</a>
-            <a href="#contact">تواصلي معنا</a>
-        </nav>
+  <header class="header">
+    <a class="logo" href="#home">
+      <span class="logo-icon">♛</span>
+      <span>QUEEN <small>STORE</small></span>
+    </a>
 
-        <a href="#cart" class="cart-link">
-            🛍️ السلة <span id="cart-count">0</span>
-        </a>
-    </header>
+    <nav class="nav">
+      <a href="#home">Home</a>
+      <a href="#makeup">Makeup 💄</a>
+      <a href="#dresses">Dresses 👗</a>
+      <a href="#accessories">Accessories ✨</a>
+    </nav>
 
-    <!-- Hero Banner -->
+    <a class="header-contact"
+       href="https://wa.me/201115830573"
+       target="_blank" rel="noopener">
+      Contact Us
+    </a>
+  </header>
+
+  <main>
     <section class="hero" id="home">
-        <div class="hero-overlay"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="eyebrow">WELCOME TO YOUR HAPPY PLACE</p>
+        <h1>Elegance is<br><span>your own kind of beauty.</span></h1>
+        <p class="hero-description">
+          Discover your style. Embrace your beauty.
+          Find little things that make you feel special.
+        </p>
+        <a href="#collections" class="btn btn-light">EXPLORE COLLECTIONS ↙</a>
+      </div>
+      <span class="hero-decoration">QUEEN'S CHOICE ♛</span>
+    </section>
 
-        <div class="hero-content">
-            <span class="hero-label">WELCOME TO QUEEN STORE</span>
-            <h1>Queen Store</h1>
-            <p>كل اللي بتحبيه.. هتلاقيه عندنا</p>
+    <section class="intro" id="collections">
+      <p class="eyebrow">MADE FOR YOUR MOMENTS</p>
+      <h2>Find Your <span>Signature Style</span></h2>
+      <p>Beautiful details. Lovely choices. A little touch of Queen.</p>
+    </section>
 
-            <div class="hero-buttons">
-                <a href="#products" class="btn">تسوّقي الآن</a>
-                <a href="#categories" class="btn btn-outline">
-                    اكتشفي الأقسام
-                </a>
+    <section class="categories">
+      <a class="category-card" href="#makeup">
+        <img src="makups.jpeg" alt="Makeup collection">
+        <span class="category-shade"></span>
+        <span class="category-info">
+          <span class="category-title">Makeup 💄</span>
+          <span class="category-subtitle">A touch of beauty</span>
+          <span class="category-link">EXPLORE COLLECTION ↗</span>
+        </span>
+      </a>
+
+      <a class="category-card" href="#dresses">
+        <img src="dresses.png" alt="Dresses collection">
+        <span class="category-shade"></span>
+        <span class="category-info">
+          <span class="category-title">Dresses 👗</span>
+          <span class="category-subtitle">Wear your confidence</span>
+          <span class="category-link">EXPLORE COLLECTION ↗</span>
+        </span>
+      </a>
+
+      <a class="category-card" href="#accessories">
+        <img src="accessories.png" alt="Accessories collection">
+        <span class="category-shade"></span>
+        <span class="category-info">
+          <span class="category-title">Accessories ✨</span>
+          <span class="category-subtitle">Details make the difference</span>
+          <span class="category-link">EXPLORE COLLECTION ↗</span>
+        </span>
+      </a>
+    </section>
+
+    <section class="products-section" id="makeup">
+      <div class="section-heading">
+        <p class="eyebrow">YOUR BEAUTY ESSENTIALS</p>
+        <h2>Makeup <span>💄</span></h2>
+        <p>A little glow goes a long way.</p>
+      </div>
+
+      <div class="products-grid">
+        <article class="product-card">
+          <div class="product-image">
+            <img src="makeup1.jpg" alt="Makeup product 1">
+            <span class="product-tag">QUEEN'S PICK</span>
+          </div>
+          <div class="product-info">
+            <h3>Beauty Essential No. 1</h3>
+            <p class="product-description">Your next beauty favorite.</p>
+            <div class="product-bottom">
+              <span class="price">Price on request</span>
+              <a class="order-btn" href="https://wa.me/201115830573" target="_blank" rel="noopener">Order ↗</a>
             </div>
-        </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-image">
+            <img src="makup2.jpg" alt="Makeup product 2">
+          </div>
+          <div class="product-info">
+            <h3>Beauty Essential No. 2</h3>
+            <p class="product-description">A lovely touch for your look.</p>
+            <div class="product-bottom">
+              <span class="price">Price on request</span>
+              <a class="order-btn" href="https://wa.me/201115830573" target="_blank" rel="noopener">Order ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-image">
+            <img src="makeup3.jpg" alt="Makeup product 3">
+          </div>
+          <div class="product-info">
+            <h3>Beauty Essential No. 3</h3>
+            <p class="product-description">Made for your beauty moments.</p>
+            <div class="product-bottom">
+              <span class="price">Price on request</span>
+              <a class="order-btn" href="https://wa.me/201115830573" target="_blank" rel="noopener">Order ↗</a>
+            </div>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <!-- Categories -->
-    <section class="section" id="categories">
-        <div class="section-heading">
-            <span>اختاري اللي يناسبك</span>
-            <h2>تسوّقي حسب القسم</h2>
-            <p>كل اختياراتك المفضلة في مكان واحد</p>
-        </div>
+    <section class="products-section alternate" id="dresses">
+      <div class="section-heading">
+        <p class="eyebrow">DRESS LIKE YOU MEAN IT</p>
+        <h2>Dresses <span>👗</span></h2>
+        <p>Every outfit tells a little story.</p>
+      </div>
 
-        <div class="category-grid">
-            <a href="#products" class="category-card">
-                <span>👜</span>
-                <h3>الشنط</h3>
-            </a>
+      <div class="products-grid">
+        <article class="product-card">
+          <div class="product-image">
+            <img src="dresses1.jpg" alt="Dress 1">
+            <span class="product-tag">QUEEN'S PICK</span>
+          </div>
+          <div class="product-info">
+            <h3>Elegant Dress No. 1</h3>
+            <p class="product-description">A style to make your day.</p>
+            <div class="product-bottom">
+              <span class="price">Price on request</span>
+              <a class="order-btn" href="https://wa.me/201115830573" target="_blank" rel="noopener">Order ↗</a>
+            </div>
+          </div>
+        </article>
 
-            <a href="#products" class="category-card">
-                <span>👗</span>
-                <h3>الفساتين</h3>
-            </a>
+        <article class="product-card">
+          <div class="product-image">
+            <img src="dresses2.jpg" alt="Dress 2">
+          </div>
+          <div class="product-info">
+            <h3>Elegant Dress No. 2</h3>
+            <p class="product-description">Simple, graceful, unforgettable.</p>
+            <div class="product-bottom">
+              <span class="price">Price on request</span>
+              <a class="order-btn" href="https://wa.me/201115830573" target="_blank" rel="noopener">Order ↗</a>
+            </div>
+          </div>
+        </article>
 
-            <a href="#products" class="category-card">
-                <span>💎</span>
-                <h3>الإكسسوارات</h3>
-            </a>
-
-            <a href="#products" class="category-card">
-                <span>💄</span>
-                <h3>الجمال</h3>
-            </a>
-        </div>
+        <article class="product-card">
+          <div class="product-image">
+            <img src="dressed3.jpg" alt="Dress 3">
+          </div>
+          <div class="product-info">
+            <h3>Elegant Dress No. 3</h3>
+            <p class="product-description">Find the look that feels like you.</p>
+            <div class="product-bottom">
+              <span class="price">Price on request</span>
+              <a class="order-btn" href="https://wa.me/201115830573" target="_blank" rel="noopener">Order ↗</a>
+            </div>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <!-- Products -->
-    <section class="section products-section" id="products">
-        <div class="section-heading">
-            <span>اختيارات مميزة ليكي</span>
-            <h2>منتجات Queen Store</h2>
-            <p>اختاري منتجاتك المفضلة</p>
-        </div>
+    <section class="products-section" id="accessories">
+      <div class="section-heading">
+        <p class="eyebrow">IT'S ALL IN THE DETAILS</p>
+        <h2>Accessories <span>✨</span></h2>
+        <p>The little details that make a look yours.</p>
+      </div>
 
-        <div class="product-grid" id="product-grid">
+      <div class="products-grid">
+        <article class="product-card">
+          <div class="product-image">
+            <img src="accessories1.webp" alt="Accessory 1">
+            <span class="product-tag">QUEEN'S PICK</span>
+          </div>
+          <div class="product-info">
+            <h3>Charming Detail No. 1</h3>
+            <p class="product-description">A little sparkle for your style.</p>
+            <div class="product-bottom">
+              <span class="price">Price on request</span>
+              <a class="order-btn" href="https://wa.me/201115830573" target="_blank" rel="noopener">Order ↗</a>
+            </div>
+          </div>
+        </article>
 
-            <article class="product-card"
-                data-name="شنطة أنيقة"
-                data-category="شنط"
-                data-price="450">
+        <article class="product-card">
+          <div class="product-image">
+            <img src="accessories2.jpeg" alt="Accessory 2">
+          </div>
+          <div class="product-info">
+            <h3>Charming Detail No. 2</h3>
+            <p class="product-description">Your style, your signature.</p>
+            <div class="product-bottom">
+              <span class="price">Price on request</span>
+              <a class="order-btn" href="https://wa.me/201115830573" target="_blank" rel="noopener">Order ↗</a>
+            </div>
+          </div>
+        </article>
 
-                <div class="product-image">
-                    <img src="220173205_nocolor_fr.webp"
-                         alt="شنطة أنيقة">
-                    <span class="product-tag">مميز</span>
-                </div>
-
-                <div class="product-info">
-                    <span class="product-category">شنط</span>
-                    <h3>شنطة أنيقة</h3>
-                    <p class="product-price">450 جنيه</p>
-                    <button class="add-to-cart">أضيفي للسلة</button>
-                </div>
-            </article>
-
-            <article class="product-card"
-                data-name="فستان أنيق"
-                data-category="فساتين"
-                data-price="650">
-
-                <div class="product-image">
-                    <img src="51319MVDKWL.jpg"
-                         alt="فستان أنيق">
-                </div>
-
-                <div class="product-info">
-                    <span class="product-category">فساتين</span>
-                    <h3>فستان أنيق</h3>
-                    <p class="product-price">650 جنيه</p>
-                    <button class="add-to-cart">أضيفي للسلة</button>
-                </div>
-            </article>
-
-            <article class="product-card"
-                data-name="إكسسوارات"
-                data-category="إكسسوارات"
-                data-price="150">
-
-                <div class="product-image">
-                    <img src="IMG_٢١٠٣٥٠_٢٠٢٦١٠٢٠.jpg"
-                         alt="إكسسوارات">
-                </div>
-
-                <div class="product-info">
-                    <span class="product-category">إكسسوارات</span>
-                    <h3>إكسسوارات مميزة</h3>
-                    <p class="product-price">150 جنيه</p>
-                    <button class="add-to-cart">أضيفي للسلة</button>
-                </div>
-            </article>
-
-            <article class="product-card"
-                data-name="سماعات"
-                data-category="إلكترونيات"
-                data-price="350">
-
-                <div class="product-image">
-                    <img src="IMG_٢١٠٤١٠_٢٠٢٦١٠٢٠.jpg"
-                         alt="سماعات">
-                </div>
-
-                <div class="product-info">
-                    <span class="product-category">إلكترونيات</span>
-                    <h3>سماعات</h3>
-                    <p class="product-price">350 جنيه</p>
-                    <button class="add-to-cart">أضيفي للسلة</button>
-                </div>
-            </article>
-
-            <article class="product-card"
-                data-name="منتجات تجميل"
-                data-category="جمال"
-                data-price="250">
-
-                <div class="product-image">
-                    <img src="IMG_٢١٠٥١٨_٢٠٢٦١٠٢٠.jpg"
-                         alt="منتجات تجميل">
-                </div>
-
-                <div class="product-info">
-                    <span class="product-category">جمال</span>
-                    <h3>منتجات تجميل</h3>
-                    <p class="product-price">250 جنيه</p>
-                    <button class="add-to-cart">أضيفي للسلة</button>
-                </div>
-            </article>
-
-            <article class="product-card"
-                data-name="بوكس هدايا"
-                data-category="هدايا"
-                data-price="300">
-
-                <div class="product-image">
-                    <img src="IMG_٢١٠٥٣١_٢٠٢٦١٠٢٠.jpg"
-                         alt="بوكس هدايا">
-                </div>
-
-                <div class="product-info">
-                    <span class="product-category">هدايا</span>
-                    <h3>بوكس هدايا</h3>
-                    <p class="product-price">300 جنيه</p>
-                    <button class="add-to-cart">أضيفي للسلة</button>
-                </div>
-            </article>
-
-            <article class="product-card"
-                data-name="منتج مميز"
-                data-category="متنوع"
-                data-price="200">
-
-                <div class="product-image">
-                    <img src="IMG_٢١١٠٤٩_٢٠٢٦١٠٢٠.jpg"
-                         alt="منتج مميز">
-                </div>
-
-                <div class="product-info">
-                    <span class="product-category">متنوع</span>
-                    <h3>منتج مميز</h3>
-                    <p class="product-price">200 جنيه</p>
-                    <button class="add-to-cart">أضيفي للسلة</button>
-                </div>
-            </article>
-
-            <article class="product-card"
-                data-name="منتج جديد"
-                data-category="متنوع"
-                data-price="180">
-
-                <div class="product-image">
-                    <img src="IMG_٢١١١٠١_٢٠٢٦١٠٢٠.jpg"
-                         alt="منتج جديد">
-                </div>
-
-                <div class="product-info">
-                    <span class="product-category">متنوع</span>
-                    <h3>منتج جديد</h3>
-                    <p class="product-price">180 جنيه</p>
-                    <button class="add-to-cart">أضيفي للسلة</button>
-                </div>
-            </article>
-
-            <article class="product-card"
-                data-name="اختيار مميز"
-                data-category="متنوع"
-                data-price="220">
-
-                <div class="product-image">
-                    <img src="IMG_٢١١١١٨_٢٠٢٦١٠٢٠.jpg"
-                         alt="اختيار مميز">
-                </div>
-
-                <div class="product-info">
-                    <span class="product-category">متنوع</span>
-                    <h3>اختيار مميز</h3>
-                    <p class="product-price">220 جنيه</p>
-                    <button class="add-to-cart">أضيفي للسلة</button>
-                </div>
-            </article>
-
-            <article class="product-card"
-                data-name="منتج إضافي"
-                data-category="متنوع"
-                data-price="190">
-
-                <div class="product-image">
-                    <img src="IMG_٢١١١٣٢_٢٠٢٦١٠٢٠.jpg"
-                         alt="منتج إضافي">
-                </div>
-
-                <div class="product-info">
-                    <span class="product-category">متنوع</span>
-                    <h3>منتج إضافي</h3>
-                    <p class="product-price">190 جنيه</p>
-                    <button class="add-to-cart">أضيفي للسلة</button>
-                </div>
-            </article>
-
-        </div>
+        <article class="product-card">
+          <div class="product-image">
+            <img src="accessories3.jpeg" alt="Accessory 3">
+          </div>
+          <div class="product-info">
+            <h3>Charming Detail No. 3</h3>
+            <p class="product-description">Small details, lovely memories.</p>
+            <div class="product-bottom">
+              <span class="price">Price on request</span>
+              <a class="order-btn" href="https://wa.me/201115830573" target="_blank" rel="noopener">Order ↗</a>
+            </div>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <!-- Shopping Cart -->
-    <section class="section cart-section" id="cart">
-        <div class="section-heading">
-            <span>مشترياتك</span>
-            <h2>سلة التسوق 🛍️</h2>
-        </div>
-
-        <div id="cart-items" class="cart-items">
-            <p class="empty-cart">السلة فارغة حاليًا.</p>
-        </div>
-
-        <div class="cart-summary">
-            <h3>الإجمالي: <span id="cart-total">0</span> جنيه</h3>
-            <button class="btn" id="checkout-btn">إتمام الطلب عبر واتساب</button>
-        </div>
+    <section class="brand-story">
+      <span class="story-crown">♛</span>
+      <p class="eyebrow">A NOTE FROM QUEEN STORE</p>
+      <h2>Beauty is personal.<br><span>Your style should be, too.</span></h2>
+      <p>We believe the right little detail can make an ordinary day feel special.</p>
+      <a class="btn btn-dark" href="https://wa.me/201115830573" target="_blank" rel="noopener">LET'S TALK ON WHATSAPP ↗</a>
     </section>
+  </main>
 
-    <!-- About -->
-    <section class="section about-section" id="about">
-        <div class="section-heading">
-            <span>أهلًا بيكي في عالمنا</span>
-            <h2>عن Queen Store</h2>
-            <p>
-                وجهتك لاكتشاف منتجات متنوعة واختيارات مميزة،
-                بتصميم بسيط وتجربة تسوق سهلة.
-            </p>
-        </div>
-    </section>
+  <footer class="footer">
+    <a class="logo footer-logo" href="#home">
+      <span class="logo-icon">♛</span>
+      <span>QUEEN <small>STORE</small></span>
+    </a>
+    <p>Elegance in every detail ✨</p>
+    <a class="footer-whatsapp" href="https://wa.me/201115830573" target="_blank" rel="noopener">WhatsApp Us ↗</a>
+    <small class="copyright">© 2026 Queen Store. All rights reserved.</small>
+  </footer>
 
-    <!-- Contact -->
-    <section class="section contact-section" id="contact">
-        <div class="section-heading">
-            <span>إحنا هنا علشانك</span>
-            <h2>تواصلي معنا</h2>
-            <p>للاستفسار عن المنتجات والطلبات</p>
-
-            <a class="btn"
-               href="https://wa.me/201115830573"
-               target="_blank"
-               rel="noopener">
-                تواصلي عبر واتساب
-            </a>
-
-            <p class="contact-phone">01115830573</p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <a href="#home" class="logo">♛ Queen Store</a>
-        <p>كل اللي بتحبيه.. في مكان واحد</p>
-        <p>© 2026 Queen Store. جميع الحقوق محفوظة.</p>
-    </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>
