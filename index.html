@@ -1,147 +1,155 @@
-
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#641b35">
-  <meta name="description" content="Queen Store - اكتشفي المكياج والفساتين والإكسسوارات">
-  <title>Queen Store | متجر الملكة</title>
-  <link rel="stylesheet" href="./style.css">
-  <script src="./script.js" defer></script>
+  <meta name="theme-color" content="#4b1028">
+  <title>Queen Store 👑</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
 
   <header class="navbar">
-    <a href="#" class="logo" onclick="showHome(); return false;">
-      ♛ <span>QUEEN</span> STORE
-    </a>
+    <a href="#" class="logo" id="homeLink">Queen Store <span>👑</span></a>
 
-    <button class="cart-button" type="button" onclick="toggleCart(true)">
-      🛍️ السلة <span id="cart-count">0</span>
-    </button>
+    <div class="nav-actions">
+      <button class="home-btn" id="homeButton" type="button">Home</button>
+      <button class="cart-btn" id="openCart" type="button">
+        🛍️ Cart <span id="cartCount">0</span>
+      </button>
+    </div>
   </header>
 
   <main>
-    <section class="hero" id="home">
-      <div class="hero-overlay">
-        <p class="eyebrow">YOUR BEAUTY, YOUR CROWN</p>
-        <h1>♛ QUEEN STORE</h1>
-        <p class="hero-text">كل اللي بتحبيه.. في مكان واحد</p>
-        <button class="gold-button" type="button" onclick="scrollToCategories()">
-          اكتشفي مجموعتنا
+    <section class="hero">
+      <img
+        src="pannar.jpg"
+        alt="Queen Store Banner"
+        class="hero-img"
+        onerror="this.style.display='none'"
+      >
+
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+        <p class="eyebrow">YOUR BEAUTY, YOUR STYLE</p>
+        <h1>Queen Store <span>👑</span></h1>
+        <p>Elegance in every detail.</p>
+        <a href="#categories" class="main-btn">Explore Collections ✨</a>
+      </div>
+    </section>
+
+    <section class="categories section" id="categories">
+      <p class="eyebrow">FIND YOUR FAVORITES</p>
+      <h2>Shop by Category</h2>
+      <p class="subtitle">
+        Discover beautiful pieces chosen especially for you.
+      </p>
+
+      <div class="category-grid">
+        <button class="category-card" data-category="makeup" type="button">
+          <img src="makups.jpeg" alt="Makeup" loading="lazy">
+          <span class="category-title">Makeup 💄</span>
+          <span class="category-desc">Explore collection ↗</span>
+        </button>
+
+        <button class="category-card" data-category="accessories" type="button">
+          <img src="accessories.png" alt="Accessories" loading="lazy">
+          <span class="category-title">Accessories ✨</span>
+          <span class="category-desc">Explore collection ↗</span>
+        </button>
+
+        <button class="category-card" data-category="dresses" type="button">
+          <img src="dresses.png" alt="Dresses" loading="lazy">
+          <span class="category-title">Dresses 👗</span>
+          <span class="category-desc">Explore collection ↗</span>
         </button>
       </div>
     </section>
 
-    <section class="categories-section" id="categories-section">
-      <div class="section-heading">
-        <span class="eyebrow">SHOP YOUR FAVORITES</span>
-        <h2>تسوّقي حسب القسم</h2>
-        <p>اختاري القسم اللي بتحبيه واكتشفي مجموعتنا</p>
-      </div>
-
-      <div class="categories-grid">
-        <button class="category-card" type="button" onclick="showCategory('makeup')">
-          <img src="./makups.jpeg" alt="مستحضرات المكياج" loading="lazy">
-          <span class="category-info">
-            <strong>المكياج</strong>
-            <small>Makeup Collection</small>
-            <span class="category-link">تسوّقي الآن ←</span>
-          </span>
-        </button>
-
-        <button class="category-card" type="button" onclick="showCategory('dresses')">
-          <img src="./dresses.png" alt="الفساتين" loading="lazy">
-          <span class="category-info">
-            <strong>الفساتين</strong>
-            <small>Dresses Collection</small>
-            <span class="category-link">تسوّقي الآن ←</span>
-          </span>
-        </button>
-
-        <button class="category-card" type="button" onclick="showCategory('accessories')">
-          <img src="./accessories.png" alt="الإكسسوارات" loading="lazy">
-          <span class="category-info">
-            <strong>الإكسسوارات</strong>
-            <small>Accessories Collection</small>
-            <span class="category-link">تسوّقي الآن ←</span>
-          </span>
-        </button>
-      </div>
-    </section>
-
-    <section class="products-section" id="products-section" hidden>
+    <section class="products-section section" id="productsSection" hidden>
       <div class="products-heading">
-        <button class="back-button" type="button" onclick="showHome()">
-          → الرجوع للأقسام
+        <div>
+          <p class="eyebrow">OUR COLLECTION</p>
+          <h2 id="productsTitle">Makeup 💄</h2>
+          <p class="subtitle">Find something lovely for yourself.</p>
+        </div>
+
+        <button class="back-btn" id="backButton" type="button">
+          ← All Categories
         </button>
-        <span class="eyebrow">QUEEN'S COLLECTION</span>
-        <h2 id="products-title">منتجاتنا</h2>
-        <p id="products-description">اختاري اللي يعجبك</p>
       </div>
 
-      <div class="products-grid" id="products-grid"></div>
+      <div class="products-grid" id="productsGrid"></div>
     </section>
 
-    <section class="features">
-      <div class="feature">
-        <span>✦</span>
-        <strong>اختيارات مميزة</strong>
-        <small>منتجات تناسب ذوقك</small>
+    <section class="contact-section section">
+      <div>
+        <p class="eyebrow">NEED HELP?</p>
+        <h2>We're happy to help 💌</h2>
+        <p>Contact us for product questions and orders.</p>
       </div>
-      <div class="feature">
-        <span>♡</span>
-        <strong>تسوّق سهل</strong>
-        <small>اختاري طلبك بكل سهولة</small>
-      </div>
-      <div class="feature">
-        <span>♛</span>
-        <strong>إنتِ الملكة</strong>
-        <small>تستاهلي كل حاجة جميلة</small>
-      </div>
+
+      <a
+        class="whatsapp-btn"
+        href="https://wa.me/201115830573"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Chat on WhatsApp ↗
+      </a>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="footer-crown">♛</div>
-    <h2>QUEEN STORE</h2>
-    <p>اختاري جمالك.. وخليكي دايمًا ملكة</p>
-    <a class="whatsapp-button"
-       href="https://wa.me/201115830573"
-       target="_blank"
-       rel="noopener noreferrer">
-      <span>☏</span> تواصلي معانا على واتساب
-    </a>
-    <p class="copyright">© 2026 Queen Store. All rights reserved.</p>
+    <a href="#" class="footer-logo">Queen Store 👑</a>
+    <p>Made with love, just for you.</p>
+    <small>© <span id="year"></span> Queen Store. All rights reserved.</small>
   </footer>
 
-  <div class="cart-backdrop" id="cart-backdrop" onclick="toggleCart(false)" hidden></div>
+  <a
+    class="floating-whatsapp"
+    href="https://wa.me/201115830573"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Contact us on WhatsApp"
+  >
+    <span>◉</span> WhatsApp
+  </a>
 
-  <aside class="cart-drawer" id="cart-drawer" aria-label="سلة المشتريات" aria-hidden="true">
+  <div class="cart-overlay" id="cartOverlay" hidden></div>
+
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
     <div class="cart-header">
       <div>
-        <span class="eyebrow">YOUR SHOPPING BAG</span>
-        <h2>سلة المشتريات 🛍️</h2>
+        <p class="eyebrow">YOUR FAVORITES</p>
+        <h2>Shopping Cart 🛍️</h2>
       </div>
-      <button class="close-cart" type="button" onclick="toggleCart(false)" aria-label="إغلاق السلة">×</button>
+      <button class="close-cart" id="closeCart" type="button" aria-label="Close cart">
+        ×
+      </button>
     </div>
 
-    <div class="cart-items" id="cart-items">
-      <p class="empty-cart">السلة لسه فاضية ♡</p>
-    </div>
+    <div class="cart-items" id="cartItems"></div>
 
     <div class="cart-footer">
-      <div class="cart-total">
-        <span>الإجمالي</span>
-        <strong id="cart-total">0 جنيه</strong>
+      <div class="total-row">
+        <span>Total</span>
+        <strong id="cartTotal">EGP 0</strong>
       </div>
-      <button class="checkout-button" type="button" onclick="checkoutWhatsApp()">
-        إتمام الطلب عبر واتساب
+
+      <button class="checkout-btn" id="checkoutButton" type="button">
+        Complete Order on WhatsApp ↗
       </button>
-      <p class="cart-note">تأكيد الطلب والتفاصيل بيكونوا عن طريق واتساب.</p>
+
+      <p class="checkout-note">
+        Your selected products and total will be included in the message.
+      </p>
     </div>
   </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 </body>
 </html>
