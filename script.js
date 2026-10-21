@@ -1,254 +1,232 @@
 
 const WHATSAPP_NUMBER = "201115830573";
 
-const products = {
-  makeup1: {
-    name: "Beauty Essential 01",
-    price: 150,
-    image: "makeup1.jpg"
+// Replace these sample prices with your actual product prices.
+const products = [
+  { id: "m1", category: "makeup", name: "Makeup Collection 01", price: 150, image: "makeup1.jpg" },
+  { id: "m2", category: "makeup", name: "Makeup Collection 02", price: 200, image: "makup2.jpg" },
+  { id: "m3", category: "makeup", name: "Makeup Collection 03", price: 250, image: "makeup3.jpg" },
+
+  { id: "d1", category: "dresses", name: "Elegant Dress 01", price: 650, image: "dresses1.jpg" },
+  { id: "d2", category: "dresses", name: "Elegant Dress 02", price: 750, image: "dresses2.jpg" },
+  { id: "d3", category: "dresses", name: "Elegant Dress 03", price: 850, image: "dressed3.jpg" },
+
+  { id: "a1", category: "accessories", name: "Accessory 01", price: 120, image: "accessories1.webp" },
+  { id: "a2", category: "accessories", name: "Accessory 02", price: 180, image: "accessories2.jpeg" },
+  { id: "a3", category: "accessories", name: "Accessory 03", price: 220, image: "accessories3.jpeg" }
+];
+
+const categoryDetails = {
+  makeup: {
+    title: "Makeup",
+    description: "A little beauty, a lot of confidence."
   },
-  makeup2: {
-    name: "Beauty Essential 02",
-    price: 200,
-    image: "makup2.jpg"
+  dresses: {
+    title: "Dresses",
+    description: "Find the look that feels like you."
   },
-  makeup3: {
-    name: "Beauty Essential 03",
-    price: 250,
-    image: "makeup3.jpg"
-  },
-  dress1: {
-    name: "Elegant Dress 01",
-    price: 650,
-    image: "dresses1.jpg"
-  },
-  dress2: {
-    name: "Elegant Dress 02",
-    price: 750,
-    image: "dresses2.jpg"
-  },
-  dress3: {
-    name: "Elegant Dress 03",
-    price: 850,
-    image: "dressed3.jpg"
-  },
-  accessory1: {
-    name: "Charming Detail 01",
-    price: 120,
-    image: "accessories1.webp"
-  },
-  accessory2: {
-    name: "Charming Detail 02",
-    price: 180,
-    image: "accessories2.jpeg"
-  },
-  accessory3: {
-    name: "Charming Detail 03",
-    price: 220,
-    image: "accessories3.jpeg"
+  accessories: {
+    title: "Accessories",
+    description: "The little details make the difference."
   }
 };
 
-const cart = {};
+let cart = [];
 
+const productGrid = document.getElementById("product-grid");
+const productsSection = document.getElementById("products-section");
+const categoriesSection = document.getElementById("categories");
 const cartDrawer = document.getElementById("cart-drawer");
 const cartBackdrop = document.getElementById("cart-backdrop");
-const cartItems = document.getElementById("cart-items");
-const cartCount = document.getElementById("cart-count");
-const cartTotal = document.getElementById("cart-total");
-const checkoutButton = document.getElementById("checkout-button");
-const toast = document.getElementById("toast");
 
-function formatPrice(price) {
-  return "EGP " + price.toLocaleString("en-US");
+document.getElementById("year").textContent = new Date().getFullYear();
+
+function showCategory(category) {
+  const details = categoryDetails[category];
+
+  if (!details) return;
+
+  document.getElementById("products-title").innerHTML =
+    details.title + " <i>Collection</i>";
+
+  document.getElementById("products-description").textContent =
+    details.description;
+
+  const selectedProducts = products.filter(
+    product => product.category === category
+  );
+
+  productGrid.innerHTML = selectedProducts.map(product => `
+    <article class="product-card">
+      <div class="product-image-wrap">
+        <img
+          src="${product.image}"
+          alt="${product.name}"
+          loading="lazy"
+          onerror="this.style.display='none'; this.parentElement.style.background='#ead5d8';"
+        >
+      </div>
+
+      <div class="product-info">
+        <span class="product-category">${category}</span>
+        <h3>${product.name}</h3>
+
+        <div class="product-bottom">
+          <span class="product-price">${product.price} EGP</span>
+          <button
+            class="add-button"
+            onclick="addToCart('${product.id}')"
+          >
+            + Add to Bag
+          </button>
+        </div>
+      </div>
+    </article>
+  `).join("");
+
+  categoriesSection.hidden = true;
+  productsSection.hidden = false;
+
+  productsSection.scrollIntoView({ behavior: "smooth" });
 }
 
-function showToast(message) {
-  toast.textContent = message;
-  toast.classList.add("show");
+function showHome() {
+  productsSection.hidden = true;
+  categoriesSection.hidden = false;
 
-  clearTimeout(showToast.timer);
-  showToast.timer = setTimeout(() => {
-    toast.classList.remove("show");
-  }, 2200);
-}
-
-function openCart() {
-  cartDrawer.classList.add("open");
-  cartBackdrop.classList.add("show");
-  cartDrawer.setAttribute("aria-hidden", "false");
-  document.body.classList.add("cart-open");
-}
-
-function closeCart() {
-  cartDrawer.classList.remove("open");
-  cartBackdrop.classList.remove("show");
-  cartDrawer.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("cart-open");
-}
-
-document.getElementById("open-cart").addEventListener("click", openCart);
-document.getElementById("close-cart").addEventListener("click", closeCart);
-document.getElementById("continue-shopping").addEventListener("click", closeCart);
-cartBackdrop.addEventListener("click", closeCart);
-
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape") {
-    closeCart();
-  }
-});
-
-document.querySelectorAll(".add-button").forEach(button => {
-  button.addEventListener("click", () => {
-    const id = button.dataset.id;
-
-    if (!products[id]) return;
-
-    cart[id] = (cart[id] || 0) + 1;
-
-    renderCart();
-    showToast("Added to your shopping bag ♡");
+  document.getElementById("home").scrollIntoView({
+    behavior: "smooth"
   });
-});
+}
 
-function changeQuantity(id, amount) {
-  if (!cart[id]) return;
+function addToCart(productId) {
+  const product = products.find(item => item.id === productId);
 
-  cart[id] += amount;
+  if (!product) return;
 
-  if (cart[id] <= 0) {
-    delete cart[id];
+  const existingItem = cart.find(item => item.id === productId);
+
+  if (existingItem) {
+    existingItem.quantity++;
+  } else {
+    cart.push({ ...product, quantity: 1 });
   }
 
-  renderCart();
+  updateCart();
+  toggleCart(true);
 }
 
-function removeItem(id) {
-  delete cart[id];
-  renderCart();
-  showToast("Item removed from your bag");
+function changeQuantity(productId, change) {
+  const item = cart.find(product => product.id === productId);
+
+  if (!item) return;
+
+  item.quantity += change;
+
+  if (item.quantity <= 0) {
+    cart = cart.filter(product => product.id !== productId);
+  }
+
+  updateCart();
 }
 
-function renderCart() {
-  const ids = Object.keys(cart);
+function removeFromCart(productId) {
+  cart = cart.filter(item => item.id !== productId);
+  updateCart();
+}
 
-  const totalQuantity = ids.reduce((sum, id) => {
-    return sum + cart[id];
-  }, 0);
+function updateCart() {
+  const count = cart.reduce(
+    (total, item) => total + item.quantity, 0
+  );
 
-  const totalPrice = ids.reduce((sum, id) => {
-    return sum + products[id].price * cart[id];
-  }, 0);
+  const total = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity, 0
+  );
 
-  cartCount.textContent = totalQuantity;
-  cartTotal.textContent = formatPrice(totalPrice);
-  checkoutButton.disabled = ids.length === 0;
+  document.getElementById("cart-count").textContent = count;
+  document.getElementById("cart-total").textContent =
+    total.toLocaleString("en-US") + " EGP";
 
-  if (ids.length === 0) {
+  const cartItems = document.getElementById("cart-items");
+
+  if (cart.length === 0) {
     cartItems.innerHTML = `
       <div class="empty-cart">
-        <span>🛍</span>
-        <h3>Your bag is waiting</h3>
-        <p>Add something lovely to get started.</p>
+        Your bag is waiting for something lovely ♡
       </div>
     `;
     return;
   }
 
-  cartItems.innerHTML = ids.map(id => {
-    const product = products[id];
-    const quantity = cart[id];
+  cartItems.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <img src="${item.image}" alt="${item.name}">
 
-    return `
-      <article class="cart-item">
-        <img src="${product.image}" alt="${product.name}">
+      <div>
+        <h3>${item.name}</h3>
+        <p>${(item.price * item.quantity).toLocaleString("en-US")} EGP</p>
 
-        <div>
-          <h3>${product.name}</h3>
-          <p class="cart-item-price">
-            ${formatPrice(product.price * quantity)}
-          </p>
+        <div class="quantity-controls">
+          <button
+            onclick="changeQuantity('${item.id}', -1)"
+            aria-label="Decrease quantity"
+          >−</button>
 
-          <div class="cart-item-actions">
-            <div class="quantity-control">
-              <button
-                type="button"
-                data-action="decrease"
-                data-id="${id}"
-                aria-label="Decrease quantity">−</button>
+          <span>${item.quantity}</span>
 
-              <span>${quantity}</span>
-
-              <button
-                type="button"
-                data-action="increase"
-                data-id="${id}"
-                aria-label="Increase quantity">+</button>
-            </div>
-
-            <button
-              type="button"
-              class="remove-item"
-              data-action="remove"
-              data-id="${id}">Remove</button>
-          </div>
+          <button
+            onclick="changeQuantity('${item.id}', 1)"
+            aria-label="Increase quantity"
+          >+</button>
         </div>
-      </article>
-    `;
-  }).join("");
+      </div>
+
+      <button
+        class="remove-item"
+        onclick="removeFromCart('${item.id}')"
+        aria-label="Remove ${item.name}"
+      >✕</button>
+    </div>
+  `).join("");
 }
 
-cartItems.addEventListener("click", event => {
-  const button = event.target.closest("button[data-action]");
+function toggleCart(open) {
+  cartDrawer.classList.toggle("open", open);
+  cartBackdrop.classList.toggle("open", open);
 
-  if (!button) return;
+  document.body.style.overflow = open ? "hidden" : "";
+}
 
-  const id = button.dataset.id;
-  const action = button.dataset.action;
-
-  if (action === "increase") changeQuantity(id, 1);
-  if (action === "decrease") changeQuantity(id, -1);
-  if (action === "remove") removeItem(id);
-});
-
-checkoutButton.addEventListener("click", () => {
-  const ids = Object.keys(cart);
-
-  if (ids.length === 0) {
-    showToast("Your shopping bag is empty");
+function checkoutWhatsApp() {
+  if (cart.length === 0) {
+    alert("Your bag is empty. Please add a product first.");
     return;
   }
 
-  let total = 0;
+  const lines = cart.map(item =>
+    `• ${item.name} x ${item.quantity} = ${
+      (item.price * item.quantity).toLocaleString("en-US")
+    } EGP`
+  );
 
-  const orderLines = ids.map(id => {
-    const product = products[id];
-    const quantity = cart[id];
-    const subtotal = product.price * quantity;
-
-    total += subtotal;
-
-    return `- ${product.name} | Quantity: ${quantity} | ${formatPrice(subtotal)}`;
-  });
+  const total = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity, 0
+  );
 
   const message = [
     "Hello Queen Store! ♛",
+    "I'd like to place an order:",
     "",
-    "I'd like to order:",
-    ...orderLines,
+    ...lines,
     "",
-    `Total: ${formatPrice(total)}`,
+    `Total: ${total.toLocaleString("en-US")} EGP`,
     "",
-    "Please confirm product availability and delivery details."
+    "Please confirm availability and delivery details."
   ].join("\n");
 
   const whatsappURL =
-    "https://wa.me/" +
-    WHATSAPP_NUMBER +
-    "?text=" +
-    encodeURIComponent(message);
+    `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
-  window.open(whatsappURL, "_blank", "noopener");
-});
-
-renderCart();
+  window.open(whatsappURL, "_blank", "noopener,noreferrer");
+}
